@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_tab"
+        android:icon="@drawable/f_icon1"
+        android:enabled="true"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/farm_tab"
+        android:icon="@drawable/f_icon2"
+        android:enabled="true"
+        android:title="@string/myfarm"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/shopping_tab"
+        android:icon="@drawable/f_icon3"
+        android:enabled="true"
+        android:title="@string/shopping"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/bio_tab"
+        android:icon="@drawable/f_icon4"
+        android:enabled="true"
+        android:title="@string/bioblock"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/info_tab"
+        android:icon="@drawable/f_icon5"
+        android:enabled="true"
+        android:title="@string/my_info"
+        app:showAsAction="ifRoom"/>
+</menu>

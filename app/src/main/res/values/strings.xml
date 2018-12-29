@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">FarmSeed</string>
+    <string name="bio">BIO</string>
+    <string name="block">BLOCK</string>
+    <string name="login_desc">\'공유경제 공유수익 꿈꾸던 행성\'</string>
+    <string name="for_got_password">Forgot your password?</string>
+    <string name="Remember_me">Remember me</string>
+    <string name="login_btn_text">Login</string>
+    <string name="signup_btn_text">Register</string>
+    <string name="home">HOME</string>
+    <string name="myfarm">My Farm</string>
+    <string name="shopping">Shopping</string>
+    <string name="bioblock">Bio block</string>
+    <string name="my_info">My Info</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_info">정보수정</string>
+    <string name="logout">logout</string>
+    <string name="my_page">MY PAGE</string>
+    <string name="history">HISTORY</string>
+    <string name="cap_save_seed">SAVE SEED</string>
+    <string name="save_seed">Save Seed</string>
+    <string name="cap_farm_seed">FARM_SEED</string>
+    <string name="cap_harvest_history">수확된 내역</string>
+    <string name="cap_bonus_seed">보너스 SEED</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="more">더보기</string>
+    <string name="bonus_seed">Bonus Seed</string>
+    <string name="my_seed">My Seed</string>
+    <string name="fram_seed">Farm Seed</string>
+    <string name="earning_history">적립내역</string>
+    <string name="seed">Seed</string>
+</resources>
