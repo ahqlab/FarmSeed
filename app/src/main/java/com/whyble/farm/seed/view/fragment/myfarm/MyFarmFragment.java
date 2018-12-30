@@ -15,6 +15,7 @@ import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
 import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
+import com.whyble.farm.seed.view.sub.applyingForMerchant.ApplyingForMerchantActivity;
 import com.whyble.farm.seed.view.sub.findMerchants.FindMerchantsActivity;
 import com.whyble.farm.seed.view.sub.giftHistory.GiftSeedHistoryActivity;
 import com.whyble.farm.seed.view.sub.giftSeed.GifiSeedActivity;
@@ -86,6 +87,7 @@ public class MyFarmFragment extends Fragment {
     }
     //가맹점 신청하기
     public void onClickApplyingForMerchant(View view){
-
+        Intent intent = new Intent(getActivity(), ApplyingForMerchantActivity.class);
+        startActivity(intent);
     }
 }
