@@ -3,9 +3,7 @@ package com.whyble.farm.seed;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,16 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.whyble.farm.seed.databinding.ActivityLoginBinding;
 import com.whyble.farm.seed.databinding.ActivityMainBinding;
 import com.whyble.farm.seed.helper.BottomNavigationViewHelper;
-import com.whyble.farm.seed.view.bioblock.BioBlockFragment;
-import com.whyble.farm.seed.view.home.HomeFragment;
-import com.whyble.farm.seed.view.myfarm.MyFarmFragment;
-import com.whyble.farm.seed.view.myinfo.MyInfoFragment;
-import com.whyble.farm.seed.view.shopping.ShoppingFragment;
+import com.whyble.farm.seed.view.fragment.home.HomeFragment;
+import com.whyble.farm.seed.view.fragment.bioblock.BioBlockFragment;
+import com.whyble.farm.seed.view.fragment.home.HomeFragment;
+import com.whyble.farm.seed.view.fragment.myfarm.MyFarmFragment;
+import com.whyble.farm.seed.view.fragment.myinfo.MyInfoFragment;
+import com.whyble.farm.seed.view.fragment.shopping.ShoppingFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

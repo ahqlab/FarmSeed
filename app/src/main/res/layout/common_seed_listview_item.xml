@@ -8,7 +8,7 @@
 
         <variable
             name="activity"
-            type="com.whyble.farm.seed.view.home.HomeFragment" />
+            type="com.whyble.farm.seed.view.fragment.home.HomeFragment" />
 
         <variable
             name="domain"

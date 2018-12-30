@@ -7,14 +7,13 @@
     <data>
         <variable
             name="activity"
-            type="com.whyble.farm.seed.view.home.HomeFragment" />
+            type="com.whyble.farm.seed.view.fragment.home.HomeFragment" />
     </data>
-
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.home.HomeFragment">
+        tools:context=".view.fragment.home.HomeFragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -24,6 +23,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:background="@color/common_btn_line_color">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="공지사항 텍스트"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@color/white">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="텍스트 영역"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -58,6 +95,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="@{activity::onClickSaveSeedMore}"
                         android:text="@string/more" />
 
                 </LinearLayout>
@@ -101,9 +139,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="@{activity::onClickFarmSeedMore}"
                         android:text="@string/more" />
 
                 </LinearLayout>
+                <ListView
+                    android:id="@+id/farm_seed_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                </ListView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -138,9 +183,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="@{activity::onClickMySeedMore}"
                         android:text="@string/more" />
 
                 </LinearLayout>
+                <ListView
+                    android:id="@+id/my_seed_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -175,9 +225,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="@{activity::onClickBonusSeedMore}"
                         android:text="@string/more" />
 
                 </LinearLayout>
+                <ListView
+                    android:id="@+id/bonus_seed_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
 
             </LinearLayout>
 

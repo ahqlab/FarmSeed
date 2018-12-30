@@ -10,4 +10,9 @@
     <color name="action_bar_color">#020035</color>
     <color name="seed_color">#EA3D24</color>
     <color name="black">#000000</color>
+    <color name="sky_blue">#d1f2ff</color>
+    <color name="second_title_text_color">#2c8ecd</color>
+    <color name="under_line_color">#e6e6e6</color>
+    <color name="green_text">#33a148</color>
+    <color name="deep_red_text">#c91d41</color>
 </resources>

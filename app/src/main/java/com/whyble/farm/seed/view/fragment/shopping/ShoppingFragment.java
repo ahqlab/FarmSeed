@@ -1,4 +1,4 @@
-package com.whyble.farm.seed.view.myfarm;
+package com.whyble.farm.seed.view.fragment.shopping;
 
 
 import android.os.Bundle;
@@ -8,28 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.whyble.farm.seed.R;
-import com.whyble.farm.seed.view.home.HomeFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyFarmFragment extends Fragment {
+public class ShoppingFragment extends Fragment {
 
 
-    public MyFarmFragment() {
+    public ShoppingFragment() {
         // Required empty public constructor
     }
 
-
-    public static MyFarmFragment newInstance() {
-        return new MyFarmFragment();
+    public static ShoppingFragment newInstance() {
+        return new ShoppingFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_farm, container, false);
+        return inflater.inflate(R.layout.fragment_shopping, container, false);
     }
 
 }
