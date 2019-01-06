@@ -11,5 +11,7 @@ public class ApplyingForMerchantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applying_for_merchant);
+
+
     }
 }

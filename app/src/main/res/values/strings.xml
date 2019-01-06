@@ -99,6 +99,15 @@
     <string name="business_or_service_desc">업체 또는 서비스 설명</string>
     <string name="search_address">주소 검색하기</string>
     <string name="apply">신청하기</string>
+    <string name="regist">Register</string>
+    <string name="star">*</string>
+    <string name="press_back_message">종료하려면 \'Back\' 버튼을 다시 누르십시오.</string>
+    <string name="required_permission_message">앱 구동에 필요한 필수 퍼미션입니다. 퍼미션에 동의해주세요.</string>
+    <string name="qr_message">직사각형 안에 QR 코드를 읽혀주세요.</string>
+    <string name="cancelled">카메라 취소됨</string>
+    <string name="do_notice">문의하기</string>
+    <string name="title">제목</string>
+    <string name="notice_info">문의내용</string>
 
 
 </resources>

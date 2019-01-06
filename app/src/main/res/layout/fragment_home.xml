@@ -29,7 +29,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <!--<TextView
+                        android:id="@+id/board_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:text="공지사항 텍스트"
+                        android:scrollHorizontally="true"
+                        tools:ignore="EllipsizeMaxLines"
+                        android:background="@color/common_btn_line_color"
+                        android:textColor="@color/white">-->
+
+
+
+
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -42,23 +62,41 @@
                             android:layout_height="wrap_content"
                             android:text="공지사항 텍스트"
                             android:textColor="@color/white"/>
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:background="@color/white">
+                        android:layout_height="wrap_content"
+                        android:background="@color/common_btn_line_color"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="텍스트 영역"
-                            android:textColor="@color/black"/>
 
                     </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/board_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="16sp"
+                        android:text="ITPANGPANG marquee 공부하는 중입니다~"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:background="@color/common_btn_line_color"
+                        android:textColor="@color/white"/>
+
+
+
+                    <VideoView
+                        android:id="@+id/videoView"
+                        android:layout_width="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_height="200dp">
+
+                    </VideoView>
 
                 </LinearLayout>
 
@@ -105,6 +143,12 @@
                     android:layout_height="150dp">
 
                 </ListView>
+                <TextView
+                    android:id="@+id/save_seed_list_view_is_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="내역이 없습니다."/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -149,7 +193,12 @@
                     android:layout_height="150dp">
 
                 </ListView>
-
+                <TextView
+                    android:id="@+id/farm_seed_list_view_is_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="내역이 없습니다."/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,6 +240,12 @@
                     android:id="@+id/my_seed_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"/>
+                <TextView
+                    android:id="@+id/my_seed_list_view_is_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="내역이 없습니다."/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -233,6 +288,12 @@
                     android:id="@+id/bonus_seed_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"/>
+                <TextView
+                    android:id="@+id/bonus_seed_list_view_is_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="내역이 없습니다."/>
 
             </LinearLayout>
 

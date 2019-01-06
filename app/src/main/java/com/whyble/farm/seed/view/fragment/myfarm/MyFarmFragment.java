@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.databinding.FragmentMyFarmBinding;
+import com.whyble.farm.seed.util.MathUtil;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
@@ -38,15 +39,11 @@ public class MyFarmFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.fragment_my_farm, container, false);
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_farm, container, false);
         binding.setActivity(this);
         return binding.getRoot();
     }
-
 
     public void onClickSaveSeed(View view){
         Intent intent = new Intent(getActivity(), SaveSeedActivity.class);
@@ -89,5 +86,17 @@ public class MyFarmFragment extends Fragment {
     public void onClickApplyingForMerchant(View view){
         Intent intent = new Intent(getActivity(), ApplyingForMerchantActivity.class);
         startActivity(intent);
+    }
+
+    public void setSavePoint(String save_point) {
+        binding.saveSeedPoint.setText(MathUtil.stringToMoneyType(save_point));
+    }
+
+    public void setFarmPoint(String farm_point) {
+        binding.farmSeedPoint.setText(MathUtil.stringToMoneyType(farm_point));
+    }
+
+    public void setCashPoint(String cash_point) {
+        binding.cashSeedPoint.setText(MathUtil.stringToMoneyType(cash_point));
     }
 }

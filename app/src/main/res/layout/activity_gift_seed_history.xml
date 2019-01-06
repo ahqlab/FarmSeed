@@ -7,21 +7,24 @@
     <data>
         <variable
             name="activity"
-            type="com.whyble.farm.seed.view.sub.neighborBlock.NeighborBlockActivity" />
+            type="com.whyble.farm.seed.view.sub.giftHistory.GiftSeedHistoryActivity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".view.sub.neighborBlock.NeighborBlockActivity">
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".view.sub.giftHistory.GiftSeedHistoryActivity">
 
         <include
+            android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
 
         <LinearLayout
             android:id="@+id/top"
-            android:layout_below="@+id/my_toolbar"
+            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -80,6 +83,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/total_seed"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
@@ -93,6 +97,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/top">
             <ListView
+                android:id="@+id/seed_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </ListView>

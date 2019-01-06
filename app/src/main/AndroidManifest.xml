@@ -19,7 +19,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA55VHiduzK7x3noqovYgi7YKKa53xyTrM" />
 
-        <activity android:name=".user.LoginActivity">
+        <activity android:name=".user.signup.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,11 @@
         <activity android:name=".view.sub.giftHistory.GiftSeedHistoryActivity" />
         <activity android:name=".view.sub.merchantUseHistory.MerchantUseHistoryActivity" />
         <activity android:name=".view.sub.findMerchants.FindMerchantsActivity" />
-        <activity android:name=".view.sub.applyingForMerchant.ApplyingForMerchantActivity"></activity>
+        <activity android:name=".view.sub.applyingForMerchant.ApplyingForMerchantActivity" />
+        <activity android:name=".user.signup.SignupActivity" />
+        <activity android:name=".user.signup.update.UpdateActivity" />
+        <activity android:name=".view.test.TestActivity" />
+        <activity android:name=".view.notice.NoticeActivity"></activity>
     </application>
 
 </manifest>

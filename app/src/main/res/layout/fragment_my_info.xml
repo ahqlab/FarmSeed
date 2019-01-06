@@ -334,12 +334,14 @@
                             android:layout_weight="1"
                             android:paddingLeft="8dp"
                             android:textSize="15sp"
+                            android:onClick="@{activity::onClickNotice}"
                             android:text="@string/contact"/>
                         <ImageView
                             android:layout_width="15dp"
                             android:layout_height="20dp"
                             android:gravity="center_vertical"
                             android:layout_gravity="center_vertical"
+                            android:onClick="@{activity::onClickNotice}"
                             android:src="@drawable/right"/>
 
                     </LinearLayout>
@@ -390,12 +392,14 @@
                             android:layout_weight="1"
                             android:paddingLeft="8dp"
                             android:textSize="15sp"
+                            android:onClick="@{activity::onClickEditUserInfo}"
                             android:text="@string/changing_information"/>
                         <ImageView
                             android:layout_width="15dp"
                             android:layout_height="20dp"
                             android:gravity="center_vertical"
                             android:layout_gravity="center_vertical"
+                            android:onClick="@{activity::onClickEditUserInfo}"
                             android:src="@drawable/right"/>
                     </LinearLayout>
                 </LinearLayout>

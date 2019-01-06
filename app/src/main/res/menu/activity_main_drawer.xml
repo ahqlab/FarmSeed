@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group>
+        <item
+            android:id="@+id/info_edit"
+            android:title="@string/edit_info" />
+        <item
+            android:id="@+id/logout"
+            android:title="@string/logout" />
+    </group>
+
     <item android:title="@string/my_page">
         <menu>
             <item

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="activity"
             type="com.whyble.farm.seed.view.fragment.bioblock.BioBlockFragment" />
