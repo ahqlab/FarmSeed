@@ -33,23 +33,51 @@ public class SignupModel extends CommonModel {
     public void testLogin(User user, final DomainCallBackListner<String> domainCallBackListner) {
 
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("id", user.getId()));
-        nameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
-        nameValuePairs.add(new BasicNameValuePair("passwd", user.getPasswd()));
-        nameValuePairs.add(new BasicNameValuePair("passwd2", user.getPasswd2()));
-        nameValuePairs.add(new BasicNameValuePair("tel1", user.getTel1()));
-        nameValuePairs.add(new BasicNameValuePair("tel2", user.getTel2()));
-        nameValuePairs.add(new BasicNameValuePair("tel3", user.getTel3()));
-        nameValuePairs.add(new BasicNameValuePair("zipcorde", user.getZipcorde()));
-        nameValuePairs.add(new BasicNameValuePair("address", user.getAddress()));
-        nameValuePairs.add(new BasicNameValuePair("address1", user.getAddress1()));
-        nameValuePairs.add(new BasicNameValuePair("birthday", user.getBirthday()));
-        nameValuePairs.add(new BasicNameValuePair("bankname", user.getBirthday()));
-        nameValuePairs.add(new BasicNameValuePair("banknum", user.getBankname()));
-        nameValuePairs.add(new BasicNameValuePair("recommend", user.getRecommend()));
-        /*Call<ServerResponse> call = NetRetrofit.getInstance().getUserService().testLogin(user.getId(), user.getEmail(), user.getPasswd(),
-                user.getPasswd2(), user.getTel1(), user.getTel2(), user.getTel3(), user.getZipcorde(),
-                user.getAddress(), user.getAddress1(),user.getBirthday(), user.getBankname(), user.getBanknum(), user.getRecommend());*/
+        if(user.getName() != null){
+            nameValuePairs.add(new BasicNameValuePair("name", user.getName()));
+        }
+        if(user.getId() != null){
+            nameValuePairs.add(new BasicNameValuePair("id", user.getId()));
+        }
+        if(user.getEmail() != null){
+            nameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
+        }
+        if(user.getPasswd() != null){
+            nameValuePairs.add(new BasicNameValuePair("passwd", user.getPasswd()));
+        }
+        if(user.getPasswd2()!= null){
+            nameValuePairs.add(new BasicNameValuePair("passwd2", user.getPasswd2()));
+        }
+        if(user.getTel1()!= null){
+            nameValuePairs.add(new BasicNameValuePair("tel1", user.getTel1()));
+        }
+        if(user.getTel2() != null){
+            nameValuePairs.add(new BasicNameValuePair("tel2", user.getTel2()));
+        }
+        if(user.getTel3() != null){
+            nameValuePairs.add(new BasicNameValuePair("tel3", user.getTel3()));
+        }
+        if(user.getZipcorde() != null){
+            nameValuePairs.add(new BasicNameValuePair("zipcorde", user.getZipcorde()));
+        }
+        if(user.getAddress() != null){
+            nameValuePairs.add(new BasicNameValuePair("address", user.getAddress()));
+        }
+        if(user.getAddress1() != null){
+            nameValuePairs.add(new BasicNameValuePair("address1", user.getAddress1()));
+        }
+        if(user.getBirthday() != null){
+            nameValuePairs.add(new BasicNameValuePair("birthday", user.getBirthday()));
+        }
+        if(user.getBankname() != null){
+            nameValuePairs.add(new BasicNameValuePair("bankname", user.getBankname()));
+        }
+        if(user.getBankname() != null){
+            nameValuePairs.add(new BasicNameValuePair("banknum", user.getBankname()));
+        }
+        if(user.getRecommend() != null){
+            nameValuePairs.add(new BasicNameValuePair("recommend", user.getRecommend()));
+        }
 
         new AbstractOldAsyncTask("member_ok2.php"){
 
@@ -63,18 +91,5 @@ public class SignupModel extends CommonModel {
 
             }
         }.execute(nameValuePairs);
-        /*Call<ServerResponse> call = NetRetrofit.getInstance().getUserService().testLogin(user);
-        new AbstractAsyncTask<ServerResponse>() {
-            @Override
-            protected void doPostExecute(ServerResponse s) {
-                domainCallBackListner.doPostExecute(s);
-            }
-
-            @Override
-            protected void doPreExecute() {
-                domainCallBackListner.doPreExecute();
-            }
-        }.execute(call);*/
-
     }
 }

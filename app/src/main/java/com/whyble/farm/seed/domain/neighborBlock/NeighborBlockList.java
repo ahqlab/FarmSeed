@@ -5,8 +5,10 @@ import com.whyble.farm.seed.domain.Domain;
 import java.util.List;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class NeighborBlockList extends Domain {
 
     private String total;

@@ -42,4 +42,23 @@ public class SaveSeedModel extends CommonModel {
             }
         }.execute(nameValuePairs);
     }
+
+    public void sendRe(String s, final DomainCallBackListner<String> domainCallBackListner) {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("valid_user", sharedPrefManager.getStringExtra(TextManager.VALID_USER)));
+        nameValuePairs.add(new BasicNameValuePair("order", s));
+
+        new AbstractOldAsyncTask("send_re.php"){
+
+            @Override
+            protected void doPostExecute(String d) {
+                domainCallBackListner.doPostExecute(d);
+            }
+
+            @Override
+            protected void doPreExecute() {
+
+            }
+        }.execute(nameValuePairs);
+    }
 }

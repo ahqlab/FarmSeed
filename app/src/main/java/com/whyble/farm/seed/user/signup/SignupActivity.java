@@ -38,7 +38,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     }
 
     public void textBtnClick(View view) {
-        User user = new User("llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
+        User user = new User("이형준", "llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
                 "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");
         Log.e("HJLEE", user.toString());
         presenter.textLogin(user);
@@ -51,15 +51,14 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         Log.e("HJLEE", "response : " + response.toString());
         if(response.getResult().matches("3")){
-            finish();
-            /*super.showBasicOneBtnPopup(null, response.getMsg())
+            super.showBasicOneBtnPopup(null, response.getMsg())
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                             finish();
                         }
-                    }).show();*/
+                    }).show();
         }else{
             super.showBasicOneBtnPopup(null, response.getMsg())
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

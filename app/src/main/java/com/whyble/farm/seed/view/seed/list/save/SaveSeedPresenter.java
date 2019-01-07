@@ -35,4 +35,19 @@ public class SaveSeedPresenter implements SaveSeedIn.Presenter {
             }
         });
     }
+
+    @Override
+    public void sendRe(String s) {
+        model.sendRe(s, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setSendReResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }

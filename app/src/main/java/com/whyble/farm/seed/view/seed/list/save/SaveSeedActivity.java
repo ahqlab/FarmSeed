@@ -1,6 +1,7 @@
 package com.whyble.farm.seed.view.seed.list.save;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -24,6 +25,7 @@ import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySaveSeedBinding;
 import com.whyble.farm.seed.databinding.AllSaveSeedListviewItemBinding;
 import com.whyble.farm.seed.databinding.SaveSeedListviewItemBinding;
+import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.seeds.save.SaveList;
 import com.whyble.farm.seed.domain.seeds.save.AllSaveList;
 import com.whyble.farm.seed.domain.seeds.save.Save;
@@ -99,6 +101,11 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
         super.onActivityResult(requestCode, resultCode, data);
     }*/
 
+
+    public void onClickSendRe(View view) {
+        presenter.sendRe(binding.order.getText().toString());
+    }
+
     @Override
     protected BaseActivity<SaveSeedActivity> getActivityClass() {
         return SaveSeedActivity.this;
@@ -110,6 +117,30 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
         AllSaveList response = gson.fromJson(s, AllSaveList.class);
         setSaveSeedList(response.getSave_list());
         setTotalSeed(response.getSave());
+    }
+
+    @Override
+    public void setSendReResult(String s) {
+        Gson gson = new Gson();
+        ServerResponse response = gson.fromJson(s, ServerResponse.class);
+        if (response.getResult().matches("2")) {
+            super.showBasicOneBtnPopup(null, response.getMsg())
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else {
+            super.showBasicOneBtnPopup(null, response.getMsg())
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+
+        }
     }
 
     private void setTotalSeed(String seed) {

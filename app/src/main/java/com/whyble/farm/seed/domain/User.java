@@ -9,7 +9,8 @@ public class User {
 
     }
 
-    public User(String id, String email, String passwd, String password2, String tel1, String tel2, String tel3, String zipcode, String address, String address1, String birthday, String bankname, String banknum, String recommend) {
+    public User(String name ,String id, String email, String passwd, String password2, String tel1, String tel2, String tel3, String zipcode, String address, String address1, String birthday, String bankname, String banknum, String recommend) {
+        this.name = name;
         this.id = id;
         this.email = email;
         this.passwd = passwd;
@@ -25,6 +26,8 @@ public class User {
         this.banknum = banknum;
         this.recommend = recommend;
     }
+
+    private String name;
 
     private String id;
 
