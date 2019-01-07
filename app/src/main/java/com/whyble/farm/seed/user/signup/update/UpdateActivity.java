@@ -17,6 +17,7 @@ import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySignupBinding;
 import com.whyble.farm.seed.databinding.ActivityUpdateBinding;
+import com.whyble.farm.seed.domain.EditUser;
 import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.User;
 import com.whyble.farm.seed.util.ValidationUtil;
@@ -32,9 +33,9 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update);
         binding.setActivity(this);
-        User user = new User("이형준","llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
-                "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");
-        binding.setDomain(user);
+      /*  User user = new User("이형준","llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
+                "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");*/
+        binding.setDomain(new EditUser());
         presenter = new UpdatePresenter(UpdateActivity.this);
         presenter.loadData(UpdateActivity.this);
         binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {

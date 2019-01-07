@@ -108,6 +108,8 @@
     <string name="do_notice">문의하기</string>
     <string name="title">제목</string>
     <string name="notice_info">문의내용</string>
+    <string name="required_order">포인트를 입력하세요</string>
+    <string name="required_search_id">사용자 아이디를 입력하세요</string>
 
 
 </resources>

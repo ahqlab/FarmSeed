@@ -46,4 +46,34 @@ public class GifiSeedPresenter implements GifiSeedIn.Presenter {
             }
         });
     }
+
+    @Override
+    public void getSearchUser(String userId) {
+        model.getSearch(userId, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setSearchResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
+
+    @Override
+    public void sendGiftSeed(String userId, String point) {
+        model.sendGiftSeed(userId, point, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setSendResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }
