@@ -9,6 +9,10 @@ public interface UpdateIn {
     interface View{
 
         void textSignupResult(String s);
+
+        void findRecommendResult(String s);
+
+        void setUserInfo(String s);
     }
 
     interface Presenter{
@@ -16,5 +20,10 @@ public interface UpdateIn {
         void loadData(Context context);
 
         void textLogin(User user);
+
+        void confirmRecommend(String recommend);
+
+        void getUserInfo();
+
     }
 }

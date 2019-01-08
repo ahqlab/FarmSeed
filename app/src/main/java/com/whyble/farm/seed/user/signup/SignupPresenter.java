@@ -2,6 +2,7 @@ package com.whyble.farm.seed.user.signup;
 
 import android.content.Context;
 
+import com.whyble.farm.seed.common.CommonModel;
 import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.User;
 
@@ -27,6 +28,21 @@ public class SignupPresenter implements SignupIn.Presenter{
             @Override
             public void doPostExecute(String s) {
                 view.textSignupResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
+
+    @Override
+    public void confirmRecommend(String recommend) {
+        model.findRecommend(recommend, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.findRecommendResult(s);
             }
 
             @Override

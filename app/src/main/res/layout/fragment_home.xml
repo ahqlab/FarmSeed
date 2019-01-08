@@ -29,50 +29,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!--<TextView
-                        android:id="@+id/board_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:maxLines="1"
-                        android:focusableInTouchMode="true"
-                        android:focusable="true"
-                        android:text="공지사항 텍스트"
-                        android:scrollHorizontally="true"
-                        tools:ignore="EllipsizeMaxLines"
-                        android:background="@color/common_btn_line_color"
-                        android:textColor="@color/white">-->
-
-
-
-
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:background="@color/common_btn_line_color">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="공지사항 텍스트"
-                            android:textColor="@color/white"/>
-                    </LinearLayout>-->
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/common_btn_line_color"
                         android:orientation="vertical">
-
-
                     </LinearLayout>
-
 
                     <TextView
                         android:id="@+id/board_text"
@@ -87,16 +49,46 @@
                         android:background="@color/common_btn_line_color"
                         android:textColor="@color/white"/>
 
-
-
-                    <VideoView
-                        android:id="@+id/videoView"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:layout_height="200dp">
+                        android:layout_height="wrap_content">
 
-                    </VideoView>
+                        <VideoView
+                            android:id="@+id/videoView"
+                            android:layout_width="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:layout_height="200dp"/>
+
+                            <TextView
+                                android:id="@+id/message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="message"
+                                android:textSize="21sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:layout_centerInParent="true"/>
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_alignParentBottom="true"
+                                android:paddingBottom="16dp"
+                                android:paddingLeft="16dp"
+                                android:onClick="@{activity::onClickInco1}"
+                                android:src="@drawable/icon1"/>
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:paddingBottom="16dp"
+                                android:paddingRight="16dp"
+                                android:onClick="@{activity::onClickInco2}"
+                                android:src="@drawable/icon2"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 

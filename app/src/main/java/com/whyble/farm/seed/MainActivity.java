@@ -190,6 +190,8 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
         android.support.v4.app.Fragment tf = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if(tf instanceof HomeFragment){
 
+            Log.e("HJLEE", ">>>" + s);
+
             Gson gson = new Gson();
             response = gson.fromJson(s, Seeds.class);
             HomeFragment homeFragment = (HomeFragment) tf;
@@ -216,6 +218,9 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
                 homeFragment.showBonusSeedEmptyView(false);
             }else{
                 homeFragment.showBonusSeedEmptyView(true);
+            }
+            if(response.getMessage() != null){
+                homeFragment.setMainMessage(response.getMessage());
             }
             homeFragment.setBoardContent(response.getNotice());
         }else if(tf instanceof MyFarmFragment){

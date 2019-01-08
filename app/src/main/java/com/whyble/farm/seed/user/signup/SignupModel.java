@@ -92,4 +92,22 @@ public class SignupModel extends CommonModel {
             }
         }.execute(nameValuePairs);
     }
+
+
+    public void findRecommend(String recommend, final DomainCallBackListner<String> domainCallBackListner) {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("recommend", recommend));
+        new AbstractOldAsyncTask("re_check.php"){
+
+            @Override
+            protected void doPostExecute(String d) {
+                domainCallBackListner.doPostExecute(d);
+            }
+
+            @Override
+            protected void doPreExecute() {
+
+            }
+        }.execute(nameValuePairs);
+    }
 }

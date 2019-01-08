@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
@@ -68,25 +67,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:text="@string/regist"
+                        android:text="My Page"
                         android:textColor="@color/second_title_text_color"
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:paddingTop="8dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="전자상거래 표준약관, 회원 관리규정, 개인정보취급방침에 관한 내용을 확인하시고 동의하시는 절차입니다." />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="기본정보 입력"
+                        android:text="정보수정"
                         android:textColor="@color/second_title_text_color"
                         android:textStyle="bold" />
 
@@ -259,7 +244,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="비밀번호"
+                                android:text="이전 비밀번호"
                                 android:textSize="12dp" />
 
                         </LinearLayout>
@@ -272,7 +257,7 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/passwd"
+                                android:id="@+id/oldPassword"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="16dp"
@@ -282,7 +267,7 @@
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:padding="4dp"
-                                android:text="@={domain.passwd}"
+                                android:text="@={domain.oldPassword}"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -300,6 +285,58 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/gray_rect_bottom_border_gray"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/star"
+                                android:textColor="@color/deep_red_text"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="새 비밀번호"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/bottom_border_gray"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/passwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:background="@drawable/border_rect_gray"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:padding="4dp"
+                                android:text="@={domain.passwd}"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -390,15 +427,18 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/birthday"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="16dp"
                                 android:background="@drawable/border_rect_gray"
-                                android:maxLines="1"
-                                android:padding="4dp"
+                                android:id="@+id/birthday"
                                 android:text="@={domain.birthday}"
-                                android:textSize="12sp" />
+                                android:onClick="@{activity::onClickBirthday}"
+                                android:layout_margin="16dp"
+                                android:hint="00/00/0000"
+                                android:focusable="false"
+                                android:padding="4dp"
+                                android:textSize="12sp"
+                                android:maxLines="1"/>
 
                         </LinearLayout>
 
@@ -945,7 +985,17 @@
                         android:layout_margin="16dp"
                         android:background="@drawable/common_blue_btn"
                         android:onClick="@{activity::onClickSignupBtnClick}"
-                        android:text="회원가입신청"
+                        android:text="회원정보변경"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/common_blue_btn"
+                        android:text="회원탈퇴"
                         android:textColor="@color/white"
                         android:textSize="12dp"
                         android:textStyle="bold" />

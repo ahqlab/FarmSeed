@@ -2,7 +2,10 @@ package com.whyble.farm.seed.user.signup.update;
 
 import android.content.Context;
 
+import com.whyble.farm.seed.common.CommonModel;
 import com.whyble.farm.seed.domain.User;
+import com.whyble.farm.seed.user.signup.SignupModel;
+import com.whyble.farm.seed.view.fragment.myinfo.MyInfoModel;
 
 public class UpdatePresenter implements UpdateIn.Presenter{
 
@@ -10,9 +13,15 @@ public class UpdatePresenter implements UpdateIn.Presenter{
 
     UpdateModel model;
 
+    SignupModel signupModel;
+
+    MyInfoModel myInfoModel;
+
     public UpdatePresenter(UpdateIn.View view) {
         this.view = view;
         this.model = new UpdateModel();
+        this.signupModel = new SignupModel();
+        this.myInfoModel = new MyInfoModel();
     }
 
     @Override
@@ -26,6 +35,36 @@ public class UpdatePresenter implements UpdateIn.Presenter{
             @Override
             public void doPostExecute(String s) {
                 view.textSignupResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
+
+    @Override
+    public void confirmRecommend(String recommend) {
+        signupModel.findRecommend(recommend, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.findRecommendResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo() {
+        myInfoModel.getUserInfo(new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setUserInfo(s);
             }
 
             @Override

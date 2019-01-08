@@ -10,6 +10,8 @@ public interface SignupIn {
     interface View{
 
         void textSignupResult(String s);
+
+        void findRecommendResult(String s);
     }
 
     interface Presenter{
@@ -17,5 +19,7 @@ public interface SignupIn {
         void loadData(Context context);
 
         void textLogin(User user);
+
+        void confirmRecommend(String recommend);
     }
 }

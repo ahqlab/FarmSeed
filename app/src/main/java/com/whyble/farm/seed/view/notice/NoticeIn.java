@@ -6,8 +6,12 @@ public class NoticeIn {
 
     interface View{
 
+        void writeNoticeResult(String result);
     }
     interface Presenter{
+
         void loadData(Context context);
+
+        void writeNotice(String title, String email, String content);
     }
 }

@@ -101,7 +101,7 @@
                         android:src="@drawable/icon10" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:text="@string/title"
@@ -109,7 +109,7 @@
 
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="8dp"
@@ -136,7 +136,7 @@
                         android:src="@drawable/icon10" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:text="@string/email"
@@ -144,6 +144,7 @@
 
 
                     <EditText
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="8dp"
@@ -184,6 +185,7 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
@@ -203,6 +205,7 @@
                         android:layout_marginTop="16dp"
                         android:textColor="@color/white"
                         android:textStyle="bold"
+                        android:onClick="@{activity::onClickNoticeBtn}"
                         android:text="@string/do_notice"/>
 
                 </LinearLayout>

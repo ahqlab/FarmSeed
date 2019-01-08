@@ -1,6 +1,7 @@
 package com.whyble.farm.seed.view.qr;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -15,13 +16,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivityQrPaymentBinding;
+import com.whyble.farm.seed.domain.ServerResponse;
+import com.whyble.farm.seed.util.ValidationUtil;
 
-public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implements QrPaymentIn.View{
+public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implements QrPaymentIn.View {
 
     ActivityQrPaymentBinding binding;
 
@@ -48,7 +52,7 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
         return QrPaymentActivity.this;
     }
 
-    public void onClickQRCodeScan(View view){
+    public void onClickQRCodeScan(View view) {
         int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         if (permissionCamera == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
@@ -67,12 +71,12 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
+        if (result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(getActivityClass(), R.string.cancelled, Toast.LENGTH_LONG).show();
             } else {
-                Log.e("HJLEE", ">>>>" +result.getContents());
-                //presenter.order(result.getContents());
+                Log.e("HJLEE", ">>>>" + result.getContents());
+                binding.qecodeId.setText(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -95,11 +99,44 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
                         }
                     }
                 }
-            break;
+                break;
         }
     }
 
-    public void onClickSendQRCode(View view){
+    public void onClickSendQRCode(View view) {
+        if (ValidationUtil.isEmptyOfEditText(binding.qecodeId)) {
+            super.showBasicOneBtnPopup(null, "주문번호를 입력하세요")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else {
+            presenter.order(binding.qecodeId.getText().toString());
+        }
+    }
 
+    @Override
+    public void sendResult(String s) {
+        Gson gson = new Gson();
+        ServerResponse response = gson.fromJson(s, ServerResponse.class);
+        if (response.getResult().matches("3")) {
+            super.showBasicOneBtnPopup(null, response.getMsg())
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else {
+            super.showBasicOneBtnPopup(null, response.getMsg())
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }
     }
 }

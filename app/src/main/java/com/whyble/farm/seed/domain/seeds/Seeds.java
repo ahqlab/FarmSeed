@@ -1,6 +1,7 @@
 package com.whyble.farm.seed.domain.seeds;
 
 import com.whyble.farm.seed.domain.Domain;
+import com.whyble.farm.seed.domain.Message;
 import com.whyble.farm.seed.domain.seeds.bonus.Bonus;
 import com.whyble.farm.seed.domain.seeds.cash.Cash;
 import com.whyble.farm.seed.domain.seeds.farm.Farm;
@@ -25,5 +26,9 @@ public class Seeds extends Domain {
     private List<Bonus> bonus;
 
     private List<Notice> notice;
+
+    private List<Message> message;
+
+
 
 }

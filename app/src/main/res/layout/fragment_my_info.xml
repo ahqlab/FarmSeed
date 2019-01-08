@@ -9,6 +9,10 @@
         <variable
             name="activity"
             type="com.whyble.farm.seed.view.fragment.myinfo.MyInfoFragment" />
+
+        <variable
+            name="domain"
+            type="com.whyble.farm.seed.domain.User" />
     </data>
 
 
@@ -61,18 +65,18 @@
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="28dp"
+                        android:layout_marginLeft="8dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/icon8"/>
+                        android:src="@drawable/icon8" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/my_info_second_title"
-                        android:textColor="@color/second_title_text_color"
                         android:layout_marginLeft="8dp"
                         android:gravity="center_vertical"
+                        android:text="@string/my_info_second_title"
+                        android:textColor="@color/second_title_text_color"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
@@ -92,315 +96,400 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/info_visual"/>
+                            android:src="@drawable/info_visual" />
+
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="20dp"
+                            android:layout_centerInParent="true"
+                            android:onClick="@{activity::onClickCameraIcon}"
+                            android:src="@drawable/add_pet_top_camera__190_190"
+                            app:civ_border_width="2dp" />
 
                     </RelativeLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
-                        android:src="@drawable/dote_bar"/>
+                        android:src="@drawable/dote_bar" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/info_icon1"/>
+                            android:src="@drawable/info_icon1" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical"
                             android:layout_weight="1"
+                            android:gravity="center_vertical"
                             android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text="test56"/>
+                            android:text="@={domain.id}"
+                            android:textSize="15sp" />
+
                         <ImageView
                             android:layout_width="15dp"
                             android:layout_height="20dp"
-                            android:gravity="center_vertical"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/right"/>
+                            android:gravity="center_vertical"
+                            android:src="@drawable/right" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/info_icon2"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text=""/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon3"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text=""/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon4"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_height="match_parent"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text=""/>
-
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingBottom="16dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon5"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text="@string/seed_shipment_history"/>
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="20dp"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/right"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon6"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text="@string/language_setting"/>
+                            android:src="@drawable/info_icon2" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@={domain.tel1}"
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="4dp"
-                                android:text="한국어"/>
+                                android:text="-" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@={domain.tel2}"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@={domain.tel3}"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/under_line_rect"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/info_icon3" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@={domain.bankname}"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="@={domain.banknum}"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/under_line_rect"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/info_icon4" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@={domain.address}"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="@={domain.address1}"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/under_line_rect"
+                            android:orientation="horizontal"
+                            android:onClick="@{activity::onClickShipment}"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/info_icon5"
+                                android:onClick="@{activity::onClickShipment}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp"
+                                android:text="@string/seed_shipment_history"
+                                android:onClick="@{activity::onClickShipment}"
+                                android:textSize="15sp" />
 
                             <ImageView
                                 android:layout_width="15dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/right"/>
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickShipment}"
+                                android:src="@drawable/right" />
 
                         </LinearLayout>
 
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon7"/>
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:onClick="@{activity::onClickNotice}"
-                            android:text="@string/contact"/>
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="20dp"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="@{activity::onClickNotice}"
-                            android:src="@drawable/right"/>
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/under_line_rect"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/info_icon6" />
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon8"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp"
+                                android:text="@string/language_setting"
+                                android:textSize="15sp" />
 
-                        <TextView
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:text="한국어" />
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/right" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:text="@string/notice"/>
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="20dp"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/right"/>
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/under_line_rect"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/under_line_rect"
-                        android:padding="8dp"
-                        android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/info_icon7" />
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/info_icon9"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickNotice}"
+                                android:paddingLeft="8dp"
+                                android:text="@string/contact"
+                                android:textSize="15sp" />
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickNotice}"
+                                android:src="@drawable/right" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:paddingLeft="8dp"
-                            android:textSize="15sp"
-                            android:onClick="@{activity::onClickEditUserInfo}"
-                            android:text="@string/changing_information"/>
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="20dp"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="@{activity::onClickEditUserInfo}"
-                            android:src="@drawable/right"/>
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/under_line_rect"
+                            android:orientation="horizontal"
+                            android:onClick="@{activity::onClickBoard}"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/info_icon8"
+                                android:onClick="@{activity::onClickBoard}"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp"
+                                android:text="@string/notice"
+                                android:onClick="@{activity::onClickBoard}"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickBoard}"
+                                android:src="@drawable/right" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/under_line_rect"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/info_icon9" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickEditUserInfo}"
+                                android:paddingLeft="8dp"
+                                android:text="@string/changing_information"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:onClick="@{activity::onClickEditUserInfo}"
+                                android:src="@drawable/right" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

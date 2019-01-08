@@ -2,10 +2,12 @@ package com.whyble.farm.seed.user.signup;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,11 +30,15 @@ import com.whyble.farm.seed.util.ValidationUtil;
 import com.whyble.farm.seed.util.device.DeviceUtils;
 import com.whyble.farm.seed.view.daum.DaumActivity;
 
+import java.util.Calendar;
+
 public class SignupActivity extends BaseActivity<SignupActivity> implements SignupIn.View {
 
     ActivitySignupBinding binding;
 
     SignupIn.Presenter presenter;
+
+    private DatePickerDialog picker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +69,33 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case TextManager.READ_PHONE_STATE_CODE:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (permission.equals(Manifest.permission.READ_PHONE_STATE)) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
+                                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+                                setPhoneumber(userPhoneNumber);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
     private void setPhoneumber(String userPhoneNumber) {
-        binding.getDomain().setTel1(userPhoneNumber.substring(0,3));
-        binding.getDomain().setTel2(userPhoneNumber.substring(3,7));
-        binding.getDomain().setTel3(userPhoneNumber.substring(7,11));
+        binding.getDomain().setTel1(userPhoneNumber.substring(0, 3));
+        binding.getDomain().setTel2(userPhoneNumber.substring(3, 7));
+        binding.getDomain().setTel3(userPhoneNumber.substring(7, 11));
     }
 
     @Override
@@ -106,6 +136,21 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         }
 
 
+    }
+
+    @Override
+    public void findRecommendResult(String s) {
+        Log.e("HJLEE", s);
+        Gson gson = new Gson();
+        ServerResponse response = gson.fromJson(s, ServerResponse.class);
+        super.showBasicOneBtnPopup(null, response.getMsg())
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                }).show();
     }
 
     public void onClickTel1(View view) {
@@ -153,12 +198,30 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     }
 
     public void onClickConfirmRecommendBtnClick(View view) {
-
+        if (ValidationUtil.isEmptyOfEditText(binding.recommend)) {
+            super.showBasicOneBtnPopup(null, "추천인을 입력하세요.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else {
+            presenter.confirmRecommend(binding.getDomain().getRecommend());
+        }
     }
 
     public void onClickSignupBtnClick(View view) {
         Log.e("HJLEE", binding.getDomain().toString());
-        if (ValidationUtil.isEmptyOfEditText(binding.id)) {
+        if (ValidationUtil.isEmptyOfEditText(binding.name)) {
+            super.showBasicOneBtnPopup(null, "이름를 입력하세요")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else if (ValidationUtil.isEmptyOfEditText(binding.id)) {
             super.showBasicOneBtnPopup(null, "아이디를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -167,7 +230,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                         }
                     }).show();
         } else if (ValidationUtil.isEmptyOfEditText(binding.passwd)) {
-            super.showBasicOneBtnPopup(null, "비밀번호를 입력하세요.")
+            super.showBasicOneBtnPopup(null, "새 비밀번호를 입력하세요.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -276,5 +339,24 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                 binding.address.setText(address);
             }
         }
+    }
+
+    public void onClickBirthday(View view) {
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        // date picker dialog
+        picker = new DatePickerDialog(SignupActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        binding.getDomain().setBirthday(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        binding.birthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        //binding.birthday.editText.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                        binding.getDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                    }
+                }, year, month, day);
+        picker.show();
     }
 }

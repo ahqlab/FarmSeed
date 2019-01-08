@@ -6,8 +6,12 @@ public class QrPaymentIn {
 
     interface View{
 
+        void sendResult(String s);
     }
     interface Presenter{
+
         void loadData(Context context);
+
+        void order(String s);
     }
 }

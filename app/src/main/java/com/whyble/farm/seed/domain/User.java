@@ -29,11 +29,14 @@ public class User {
         this.recommend = recommend;
     }
 
+
     private String name;
 
     private String id;
 
     private String email;
+
+    private String oldPassword;
 
     private String passwd;
 

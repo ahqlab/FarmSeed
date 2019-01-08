@@ -23,6 +23,7 @@ import com.whyble.farm.seed.databinding.FarmSeedListviewItemBinding;
 import com.whyble.farm.seed.databinding.FragmentHomeBinding;
 import com.whyble.farm.seed.databinding.SaveSeedListviewItemBinding;
 import com.whyble.farm.seed.domain.CommonSeedHistory;
+import com.whyble.farm.seed.domain.Message;
 import com.whyble.farm.seed.domain.seeds.bonus.Bonus;
 import com.whyble.farm.seed.domain.seeds.cash.Cash;
 import com.whyble.farm.seed.domain.seeds.farm.Farm;
@@ -115,6 +116,14 @@ public class HomeFragment extends Fragment {
     public void onClickBonusSeedMore(View view) {
         Intent intent = new Intent(getActivity(), BonusSeedActivity.class);
         startActivity(intent);
+    }
+    public void onClickInco1(View view) {
+        Intent intent = new Intent(getActivity(), SaveSeedActivity.class);
+        startActivity(intent);
+    }
+    public void onClickInco2(View view) {
+        /*Intent intent = new Intent(getActivity(), BonusSeedActivity.class);
+        startActivity(intent);*/
     }
 
     public void setSaveSeedList(List<Save> list) {
@@ -275,11 +284,22 @@ public class HomeFragment extends Fragment {
         StringBuffer sb = new StringBuffer();
         for (Notice noti: notice) {
             sb.append(noti.getTitle());
-            sb.append("--------------------------------");
-            sb.append("--------------------------------");
+            sb.append("                                ");
+            sb.append("                                ");
         }
         binding.boardText.setText(sb.toString());
         binding.boardText.setSelected(true);
 
+    }
+
+    public void setMainMessage(List<Message> message) {
+        StringBuffer sb = new StringBuffer();
+        for (Message ms: message) {
+            if(ms.getTitle()
+                    != null){
+                sb.append(ms.getTitle());
+            }
+        }
+        binding.message.setText(sb.toString());
     }
 }

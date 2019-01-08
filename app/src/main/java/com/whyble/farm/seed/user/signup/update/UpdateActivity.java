@@ -2,14 +2,19 @@ package com.whyble.farm.seed.user.signup.update;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,7 +25,13 @@ import com.whyble.farm.seed.databinding.ActivityUpdateBinding;
 import com.whyble.farm.seed.domain.EditUser;
 import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.User;
+import com.whyble.farm.seed.user.signup.SignupActivity;
+import com.whyble.farm.seed.util.TextManager.TextManager;
 import com.whyble.farm.seed.util.ValidationUtil;
+import com.whyble.farm.seed.util.device.DeviceUtils;
+import com.whyble.farm.seed.view.daum.DaumActivity;
+
+import java.util.Calendar;
 
 public class UpdateActivity extends BaseActivity<UpdateActivity> implements UpdateIn.View {
 
@@ -28,16 +39,16 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     UpdateIn.Presenter presenter;
 
+    private DatePickerDialog picker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update);
         binding.setActivity(this);
-        User user = new User("이형준","llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
-                "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");
-        binding.setDomain(user);
         presenter = new UpdatePresenter(UpdateActivity.this);
         presenter.loadData(UpdateActivity.this);
+        presenter.getUserInfo();
         binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +62,48 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         return UpdateActivity.this;
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setAutoPhoneNumber();
+    }
+
+    public void setAutoPhoneNumber() {
+        int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE);
+        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(UpdateActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
+            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+        } else {
+            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
+                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+                setPhoneumber(userPhoneNumber);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case TextManager.READ_PHONE_STATE_CODE:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (permission.equals(Manifest.permission.READ_PHONE_STATE)) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
+                                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+                                setPhoneumber(userPhoneNumber);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+        }
+    }
 
     @Override
     public void textSignupResult(String s) {
@@ -68,8 +121,12 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                         }
                     }).show();
         }
+    }
 
-
+    private void setPhoneumber(String userPhoneNumber) {
+        binding.getDomain().setTel1(userPhoneNumber.substring(0,3));
+        binding.getDomain().setTel2(userPhoneNumber.substring(3,7));
+        binding.getDomain().setTel3(userPhoneNumber.substring(7,11));
     }
 
     public void onClickTel1(View view) {
@@ -116,14 +173,63 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     }
 
+
     public void onClickConfirmRecommendBtnClick(View view) {
 
+        if (ValidationUtil.isEmptyOfEditText(binding.recommend)) {
+            super.showBasicOneBtnPopup(null, "추천인을 입력하세요.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }else{
+            presenter.confirmRecommend(binding.getDomain().getRecommend());
+        }
+    }
+
+    @Override
+    public void findRecommendResult(String s) {
+        Gson gson = new Gson();
+        ServerResponse response = gson.fromJson(s, ServerResponse.class);
+        super.showBasicOneBtnPopup(null, response.getMsg())
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                }).show();
+    }
+
+    @Override
+    public void setUserInfo(String s) {
+        Gson gson = new Gson();
+        User user = gson.fromJson(s, User.class);
+        binding.setDomain(user);
     }
 
     public void onClickSignupBtnClick(View view) {
         Log.e("HJLEE", binding.getDomain().toString());
-        if (ValidationUtil.isEmptyOfEditText(binding.id)) {
+        if (ValidationUtil.isEmptyOfEditText(binding.name)) {
+            super.showBasicOneBtnPopup(null, "이름를 입력하세요")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }else if (ValidationUtil.isEmptyOfEditText(binding.id)) {
             super.showBasicOneBtnPopup(null, "아이디를 입력하세요")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else if (ValidationUtil.isEmptyOfEditText(binding.oldPassword)) {
+            super.showBasicOneBtnPopup(null, "이전 비밀번호를 입력하세요.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -226,5 +332,38 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
 
     public void onClickZipcodeBtnClick(View view) {
+        Intent i = new Intent(getActivityClass(), DaumActivity.class);
+        startActivityForResult(i, TextManager.ZIPCODE_REQUST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TextManager.ZIPCODE_REQUST_CODE) {
+            if (resultCode == RESULT_OK) {
+                String zipcorde = data.getStringExtra("zipcorde");
+                String address = data.getStringExtra("address");
+                binding.zipcorde.setText(zipcorde);
+                binding.address.setText(address);
+            }
+        }
+    }
+
+    public void onClickBirthday(View view){
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        // date picker dialog
+        picker = new DatePickerDialog(UpdateActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        binding.getDomain().setBirthday(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        binding.birthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                        binding.getDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                    }
+                }, year, month, day);
+        picker.show();
     }
 }
