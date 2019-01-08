@@ -33,9 +33,9 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update);
         binding.setActivity(this);
-      /*  User user = new User("이형준","llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
-                "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");*/
-        binding.setDomain(new EditUser());
+        User user = new User("이형준","llaallaall", "silver@gmail.com", "sd1213", "sd1213", "010", "9129", "9312",
+                "12302", "대전광역시", "어디선가", "2020-12-12", "국민은행", "0123210", "masdj");
+        binding.setDomain(user);
         presenter = new UpdatePresenter(UpdateActivity.this);
         presenter.loadData(UpdateActivity.this);
         binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {

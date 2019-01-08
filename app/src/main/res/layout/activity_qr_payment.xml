@@ -8,7 +8,6 @@
         <variable
             name="activity"
             type="com.whyble.farm.seed.view.qr.QrPaymentActivity" />
-
     </data>
 
 
@@ -32,12 +31,106 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/title_bg"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/left_back" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/send"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/circle_red"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="주문번호를 입력하세요."/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/qecode_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="4dp"
+                        android:background="@drawable/common_edit_text"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/scan_qr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/common_blue_btn"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_marginRight="4dp"
+                            android:onClick="@{activity::onClickQRCodeScan}"
+                            android:text="QR 스캔"/>
+
+                        <Button
+                            android:id="@+id/send_qr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/common_blue_btn"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="4dp"
+                            android:onClick="@{activity::onClickSendQRCode}"
+                            android:text="보내기"/>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-
         </ScrollView>
     </RelativeLayout>
 

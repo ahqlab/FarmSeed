@@ -10,8 +10,10 @@ import com.whyble.farm.seed.domain.seeds.save.Save;
 import java.util.List;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Seeds extends Domain {
 
     private List<Save> save;

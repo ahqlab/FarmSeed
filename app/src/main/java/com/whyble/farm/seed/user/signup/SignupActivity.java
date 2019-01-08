@@ -1,12 +1,20 @@
 package com.whyble.farm.seed.user.signup;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.whyble.farm.seed.R;
@@ -14,7 +22,10 @@ import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySignupBinding;
 import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.User;
+import com.whyble.farm.seed.util.TextManager.TextManager;
 import com.whyble.farm.seed.util.ValidationUtil;
+import com.whyble.farm.seed.util.device.DeviceUtils;
+import com.whyble.farm.seed.view.daum.DaumActivity;
 
 public class SignupActivity extends BaseActivity<SignupActivity> implements SignupIn.View {
 
@@ -30,6 +41,31 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         binding.setDomain(new User());
         presenter = new SignupPresenter(this);
         presenter.loadData(SignupActivity.this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setAutoPhoneNumber();
+    }
+
+    public void setAutoPhoneNumber() {
+        int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE);
+        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(SignupActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
+            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+        } else {
+            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
+                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+                setPhoneumber(userPhoneNumber);
+            }
+        }
+    }
+
+    private void setPhoneumber(String userPhoneNumber) {
+        binding.getDomain().setTel1(userPhoneNumber.substring(0,3));
+        binding.getDomain().setTel2(userPhoneNumber.substring(3,7));
+        binding.getDomain().setTel3(userPhoneNumber.substring(7,11));
     }
 
     @Override
@@ -50,7 +86,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         Log.e("HJLEE", "response : " + response.toString());
-        if(response.getResult().matches("3")){
+        if (response.getResult().matches("3")) {
             super.showBasicOneBtnPopup(null, response.getMsg())
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -59,7 +95,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             finish();
                         }
                     }).show();
-        }else{
+        } else {
             super.showBasicOneBtnPopup(null, response.getMsg())
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -72,7 +108,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     }
 
-    public void onClickTel1(View view){
+    public void onClickTel1(View view) {
         final String[] values = new String[]{
                 "010",
                 "011",
@@ -95,7 +131,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     }
 
-    public void onClickBankname(View view){
+    public void onClickBankname(View view) {
         final String[] values = new String[]{
                 "농협",
                 "하나은행",
@@ -122,7 +158,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     public void onClickSignupBtnClick(View view) {
         Log.e("HJLEE", binding.getDomain().toString());
-        if(ValidationUtil.isEmptyOfEditText(binding.id)){
+        if (ValidationUtil.isEmptyOfEditText(binding.id)) {
             super.showBasicOneBtnPopup(null, "아이디를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -130,7 +166,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.passwd)){
+        } else if (ValidationUtil.isEmptyOfEditText(binding.passwd)) {
             super.showBasicOneBtnPopup(null, "비밀번호를 입력하세요.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -138,7 +174,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.passwd2)){
+        } else if (ValidationUtil.isEmptyOfEditText(binding.passwd2)) {
             super.showBasicOneBtnPopup(null, "확인 비밀번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -146,7 +182,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.birthday)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.birthday)) {
             super.showBasicOneBtnPopup(null, "생년월일을 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -154,7 +190,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.tel1)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.tel1)) {
             super.showBasicOneBtnPopup(null, "전화번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -162,7 +198,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.tel2)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.tel2)) {
             super.showBasicOneBtnPopup(null, "전화번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -170,7 +206,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.tel3)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.tel3)) {
             super.showBasicOneBtnPopup(null, "전화번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -178,7 +214,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.zipcorde)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.zipcorde)) {
             super.showBasicOneBtnPopup(null, "우편번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -186,7 +222,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.address)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.address)) {
             super.showBasicOneBtnPopup(null, "주소를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -194,7 +230,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.address1)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.address1)) {
             super.showBasicOneBtnPopup(null, "상세주소를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -202,7 +238,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.bankname)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.bankname)) {
             super.showBasicOneBtnPopup(null, "은행명을 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -210,7 +246,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else if(ValidationUtil.isEmptyOfEditText(binding.banknum)) {
+        } else if (ValidationUtil.isEmptyOfEditText(binding.banknum)) {
             super.showBasicOneBtnPopup(null, "계좌번호를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
@@ -218,13 +254,27 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             dialog.dismiss();
                         }
                     }).show();
-        }else{
+        } else {
             Log.e("HJLEE", binding.getDomain().toString());
             presenter.textLogin(binding.getDomain());
         }
     }
 
-
     public void onClickZipcodeBtnClick(View view) {
+        Intent i = new Intent(getActivityClass(), DaumActivity.class);
+        startActivityForResult(i, TextManager.ZIPCODE_REQUST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TextManager.ZIPCODE_REQUST_CODE) {
+            if (resultCode == RESULT_OK) {
+                String zipcorde = data.getStringExtra("zipcorde");
+                String address = data.getStringExtra("address");
+                binding.zipcorde.setText(zipcorde);
+                binding.address.setText(address);
+            }
+        }
     }
 }

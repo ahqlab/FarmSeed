@@ -1,5 +1,10 @@
 package com.whyble.farm.seed.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
 public class ActivityInfo {
 
     public String barTitle;

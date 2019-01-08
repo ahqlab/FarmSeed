@@ -24,6 +24,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.SharedPrefManager;
+import com.whyble.farm.seed.user.signup.login.LoginActivity;
+import com.whyble.farm.seed.view.qr.QrPaymentActivity;
 
 public abstract class BaseActivity<D extends Activity> extends AppCompatActivity implements BaseIn.View{
 
@@ -101,8 +103,10 @@ public abstract class BaseActivity<D extends Activity> extends AppCompatActivity
     }
 
     public void openCamera() {
-
-        int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
+        Intent intent = new Intent(getActivityClass(), QrPaymentActivity.class);
+        startActivity(intent);
+        //finish();
+       /* int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         if (permissionCamera == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
@@ -113,7 +117,7 @@ public abstract class BaseActivity<D extends Activity> extends AppCompatActivity
             integrator.setScanningRectangle(800, 800);
             integrator.setPrompt(getString(R.string.qr_message));
             integrator.initiateScan();
-        }
+        }*/
 
     }
 

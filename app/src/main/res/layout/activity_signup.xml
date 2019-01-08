@@ -463,8 +463,8 @@
                                     android:id="@+id/tel1"
                                     android:text="@={domain.tel1}"
                                     android:onClick="@{activity::onClickTel1}"
-                                    android:focusable="false"
                                     android:layout_margin="16dp"
+                                    android:focusable="false"
                                     android:padding="4dp"
                                     android:textSize="12sp"
                                     android:maxLines="1"/>
@@ -478,6 +478,7 @@
                                     android:background="@drawable/border_rect_gray"
                                     android:id="@+id/tel2"
                                     android:text="@={domain.tel2}"
+                                    android:focusable="false"
                                     android:layout_margin="16dp"
                                     android:padding="4dp"
                                     android:textSize="12sp"
@@ -492,6 +493,7 @@
                                     android:background="@drawable/border_rect_gray"
                                     android:id="@+id/tel3"
                                     android:text="@={domain.tel3}"
+                                    android:focusable="false"
                                     android:layout_margin="16dp"
                                     android:padding="4dp"
                                     android:textSize="12sp"
@@ -601,6 +603,7 @@
                                     android:layout_marginBottom="16dp"
                                     android:id="@+id/zipcorde"
                                     android:text="@={domain.zipcorde}"
+                                    android:focusable="false"
                                     android:padding="4dp"
                                     android:textSize="12sp"
                                     android:maxLines="1"
@@ -629,9 +632,7 @@
                                 android:id="@+id/address"
                                 android:text="@={domain.address}"
                                 android:padding="4dp"
-                                android:textSize="12sp"
-                                android:maxLines="1"
-                                />
+                                android:textSize="12sp" />
 
                             <EditText
                                 android:layout_width="match_parent"

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
@@ -42,7 +44,6 @@
         <activity android:name=".view.test.TestActivity" />
         <activity android:name=".view.notice.NoticeActivity" />
         <activity android:name=".view.qr.QrPaymentActivity"></activity>
-        <activity android:name=".view.notice.NoticeActivity" />
         <activity android:name=".view.daum.DaumActivity"></activity>
     </application>
 
