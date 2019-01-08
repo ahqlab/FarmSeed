@@ -10,7 +10,7 @@
             type="com.whyble.farm.seed.user.signup.update.UpdateActivity" />
         <variable
             name="domain"
-            type="com.whyble.farm.seed.domain.User" />
+            type="com.whyble.farm.seed.domain.EditUser" />
     </data>
 
 
@@ -165,7 +165,8 @@
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"
-                                android:layout_margin="16dp"/>
+                                android:layout_margin="16dp"
+                                android:text="@={domain.name}"/>
 
                         </LinearLayout>
 
@@ -319,7 +320,7 @@
                                 android:background="@drawable/border_rect_gray"
                                 android:layout_margin="16dp"
                                 android:id="@+id/passwd2"
-                                android:text="@={domain.passwd2}"
+                                android:text="@={domain.passwd}"
                                 android:inputType="textPassword"
                                 android:padding="4dp"
                                 android:textSize="12sp"
@@ -464,7 +465,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/border_rect_gray"
                                     android:id="@+id/tel1"
-                                    android:text="@={domain.tel1}"
+                                    android:text="@={domain.handphone1}"
                                     android:onClick="@{activity::onClickTel1}"
                                     android:focusable="false"
                                     android:layout_margin="16dp"
@@ -480,7 +481,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/border_rect_gray"
                                     android:id="@+id/tel2"
-                                    android:text="@={domain.tel2}"
+                                    android:text="@={domain.handphone2}"
                                     android:layout_margin="16dp"
                                     android:padding="4dp"
                                     android:textSize="12sp"
@@ -494,7 +495,7 @@
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/border_rect_gray"
                                     android:id="@+id/tel3"
-                                    android:text="@={domain.tel3}"
+                                    android:text="@={domain.handphone3}"
                                     android:layout_margin="16dp"
                                     android:padding="4dp"
                                     android:textSize="12sp"
@@ -630,7 +631,7 @@
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginRight="16dp"
                                 android:id="@+id/address"
-                                android:text="@={domain.address}"
+                                android:text="@={domain.address1}"
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"
@@ -645,7 +646,7 @@
                                 android:layout_marginRight="16dp"
                                 android:layout_marginBottom="16dp"
                                 android:id="@+id/address1"
-                                android:text="@={domain.address1}"
+                                android:text="@={domain.address2}"
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"

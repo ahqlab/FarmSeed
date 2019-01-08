@@ -8,7 +8,7 @@
 
         <variable
             name="activity"
-            type="com.whyble.farm.seed.view.fragment.myfarm.MyFarmFragment" />
+            type="com.whyble.farm.seed.view.sub.giftSeed.GifiSeedActivity" />
     </data>
 
 
@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:context=".view.fragment.myfarm.MyFarmFragment">
+        tools:context=".seed.view.sub.giftSeed.GifiSeedActivity">
 
         <include
             android:id="@+id/toolbar"
@@ -170,25 +170,27 @@
                         android:orientation="horizontal">
 
                         <EditText
-                            android:layout_width="wrap_content"
+                            android:id="@+id/searchId"
+                            android:layout_width="260dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_weight="6"
+                            android:paddingLeft="4dp"
+                            android:maxLines="1"
                             android:background="@drawable/common_edit_text" />
 
                         <Button
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="4dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_weight="1"
                             android:background="@drawable/common_blue_btn"
                             android:text="@string/find_id_btn_text"
+                            android:onClick="@{activity::onClickSearchBtn}"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
@@ -196,10 +198,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/notfoundUserly"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -216,20 +221,23 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/findUserly"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/findUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="사용자아이디" />
+                        android:paddingLeft="16dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="test56" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+" />
 
                 </LinearLayout>
 
@@ -275,25 +283,26 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/seed"
+                        android:layout_width="260dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_weight="6"
+                        android:paddingLeft="4dp"
                         android:background="@drawable/common_edit_text" />
 
                     <Button
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
                         android:background="@drawable/common_green_btn"
                         android:text="@string/gift_btn_text"
+                        android:onClick="@{activity::onClickGiftSeedBtn}"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

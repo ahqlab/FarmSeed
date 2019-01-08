@@ -13,11 +13,19 @@ public class GifiSeedIn {
         void setFarmPoint(String farm_point);
 
         void setCashPoint(String cash_point);
+
+        void setSearchResult(String s);
+
+        void setSendResult(String s);
     }
     interface Presenter{
 
         void loadData(Context context);
 
         void getMyTotlaSeeds();
+
+        void getSearchUser(String s);
+
+        void sendGiftSeed(String userId, String point);
     }
 }

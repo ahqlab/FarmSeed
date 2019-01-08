@@ -29,6 +29,7 @@ import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.seeds.save.SaveList;
 import com.whyble.farm.seed.domain.seeds.save.AllSaveList;
 import com.whyble.farm.seed.domain.seeds.save.Save;
+import com.whyble.farm.seed.util.ValidationUtil;
 
 import java.util.List;
 
@@ -103,8 +104,20 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
 
 
     public void onClickSendRe(View view) {
-        presenter.sendRe(binding.order.getText().toString());
+        if (ValidationUtil.isEmptyOfEditText(binding.order)) {
+            super.showBasicOneBtnPopup(null, getString(R.string.required_order))
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        } else {
+            presenter.sendRe(binding.order.getText().toString());
+        }
     }
+
+
 
     @Override
     protected BaseActivity<SaveSeedActivity> getActivityClass() {
