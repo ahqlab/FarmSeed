@@ -27,6 +27,8 @@ public class UpdatePresenter implements UpdateIn.Presenter{
     @Override
     public void loadData(Context context) {
         model.loadData(context);
+        signupModel.loadData(context);
+        myInfoModel.loadData(context);
     }
 
     @Override

@@ -29,6 +29,7 @@ public class UpdateModel extends CommonModel {
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("id", user.getId()));
         nameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
+        nameValuePairs.add(new BasicNameValuePair("old_pass", user.getOld_pass()));
         nameValuePairs.add(new BasicNameValuePair("passwd", user.getPasswd()));
         nameValuePairs.add(new BasicNameValuePair("passwd2", user.getPasswd2()));
         nameValuePairs.add(new BasicNameValuePair("tel1", user.getTel1()));
@@ -42,7 +43,7 @@ public class UpdateModel extends CommonModel {
         nameValuePairs.add(new BasicNameValuePair("banknum", user.getBankname()));
         nameValuePairs.add(new BasicNameValuePair("recommend", user.getRecommend()));
 
-        new AbstractOldAsyncTask("member_ok2.php"){
+        new AbstractOldAsyncTask("modfiy_ok.php"){
 
             @Override
             protected void doPostExecute(String d) {

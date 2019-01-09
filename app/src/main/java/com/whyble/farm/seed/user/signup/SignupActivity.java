@@ -138,20 +138,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     }
 
-    @Override
-    public void findRecommendResult(String s) {
-        Log.e("HJLEE", s);
-        Gson gson = new Gson();
-        ServerResponse response = gson.fromJson(s, ServerResponse.class);
-        super.showBasicOneBtnPopup(null, response.getMsg())
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        finish();
-                    }
-                }).show();
-    }
+
 
     public void onClickTel1(View view) {
         final String[] values = new String[]{
@@ -209,6 +196,20 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
         } else {
             presenter.confirmRecommend(binding.getDomain().getRecommend());
         }
+    }
+    @Override
+    public void findRecommendResult(String s) {
+        Log.e("HJLEE", s);
+        Gson gson = new Gson();
+        ServerResponse response = gson.fromJson(s, ServerResponse.class);
+        super.showBasicOneBtnPopup(null, response.getMsg())
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                }).show();
     }
 
     public void onClickSignupBtnClick(View view) {

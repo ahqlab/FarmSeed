@@ -36,7 +36,7 @@ public class User {
 
     private String email;
 
-    private String oldPassword;
+    private String old_pass;
 
     private String passwd;
 

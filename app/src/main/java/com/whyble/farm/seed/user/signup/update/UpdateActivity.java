@@ -66,7 +66,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
     @Override
     protected void onStart() {
         super.onStart();
-        setAutoPhoneNumber();
+
     }
 
     public void setAutoPhoneNumber() {
@@ -107,6 +107,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     @Override
     public void textSignupResult(String s) {
+        Log.e("HJLEE", "s : " + s);
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         Log.e("HJLEE", "response : " + response.toString());
@@ -124,9 +125,12 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
     }
 
     private void setPhoneumber(String userPhoneNumber) {
-        binding.getDomain().setTel1(userPhoneNumber.substring(0,3));
-        binding.getDomain().setTel2(userPhoneNumber.substring(3,7));
-        binding.getDomain().setTel3(userPhoneNumber.substring(7,11));
+        Log.e("HJLEE", "userPhoneNumber : " + userPhoneNumber);
+        if(userPhoneNumber != null){
+            binding.getDomain().setTel1(userPhoneNumber.substring(0,3));
+            binding.getDomain().setTel2(userPhoneNumber.substring(3,7));
+            binding.getDomain().setTel3(userPhoneNumber.substring(7,11));
+        }
     }
 
     public void onClickTel1(View view) {
@@ -191,6 +195,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     @Override
     public void findRecommendResult(String s) {
+        Log.e("HJLEE", s);
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         super.showBasicOneBtnPopup(null, response.getMsg())
@@ -208,6 +213,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         Gson gson = new Gson();
         User user = gson.fromJson(s, User.class);
         binding.setDomain(user);
+        setAutoPhoneNumber();
     }
 
     public void onClickSignupBtnClick(View view) {
@@ -300,14 +306,14 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                             dialog.dismiss();
                         }
                     }).show();
-        } else if (ValidationUtil.isEmptyOfEditText(binding.address1)) {
+     /*   } else if (ValidationUtil.isEmptyOfEditText(binding.address1)) {
             super.showBasicOneBtnPopup(null, "상세주소를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    }).show();
+                    }).show();*/
         } else if (ValidationUtil.isEmptyOfEditText(binding.bankname)) {
             super.showBasicOneBtnPopup(null, "은행명을 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -325,6 +331,9 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                         }
                     }).show();
         } else {
+            binding.getDomain().setOld_pass(binding.oldPassword.getText().toString());
+            binding.getDomain().setPasswd(binding.passwd.getText().toString());
+            binding.getDomain().setPasswd2(binding.passwd2.getText().toString());
             Log.e("HJLEE", binding.getDomain().toString());
             presenter.textLogin(binding.getDomain());
         }
