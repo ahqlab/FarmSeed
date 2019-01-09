@@ -1,28 +1,27 @@
 package com.whyble.farm.seed.view.sub.neighborBlock.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.whyble.farm.seed.R;
+import com.whyble.farm.seed.domain.neighborBlock.Block1;
+import com.whyble.farm.seed.domain.neighborBlock.Block2;
 
 import java.util.ArrayList;
 
 public class BaseExpandableAdapter extends BaseExpandableListAdapter {
 
-    private ArrayList<String> groupList = null;
-    private ArrayList<ArrayList<String>> childList = null;
+    private ArrayList<Block1> groupList = null;
+    private ArrayList<ArrayList<Block2>> childList = null;
     private LayoutInflater inflater = null;
     private ViewHolder viewHolder = null;
 
-    public BaseExpandableAdapter(Context c, ArrayList<String> groupList,
-                                 ArrayList<ArrayList<String>> childList){
+    public BaseExpandableAdapter(Context c, ArrayList<Block1> groupList,
+                                 ArrayList<ArrayList<Block2>> childList){
         super();
         this.inflater = LayoutInflater.from(c);
         this.groupList = groupList;
@@ -31,7 +30,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
 
     // 그룹 포지션을 반환한다.
     @Override
-    public String getGroup(int groupPosition) {
+    public Block1 getGroup(int groupPosition) {
         return groupList.get(groupPosition);
     }
 
@@ -54,26 +53,27 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
         View v = convertView;
         if(v == null){
             viewHolder = new ViewHolder();
-            v = inflater.inflate(R.layout.list_row, parent, false);
-            viewHolder.tv_groupName = (TextView) v.findViewById(R.id.tv_group);
-            viewHolder.iv_image = (ImageView) v.findViewById(R.id.iv_image);
+            v = inflater.inflate(R.layout.neighbor_block_listview_item, parent, false);
+            viewHolder.userId = (TextView) v.findViewById(R.id.user_id);
+            viewHolder.userCount = (TextView) v.findViewById(R.id.user_count);
             v.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)v.getTag();
         }
         // 그룹을 펼칠때와 닫을때 아이콘을 변경해 준다.
-        if(isExpanded){
+       /* if(isExpanded){
             viewHolder.iv_image.setBackgroundColor(Color.GREEN);
         }else{
             viewHolder.iv_image.setBackgroundColor(Color.WHITE);
-        }
-        viewHolder.tv_groupName.setText(getGroup(groupPosition));
+        }*/
+        viewHolder.userId.setText(getGroup(groupPosition).getUser_id());
+        viewHolder.userCount.setText(getGroup(groupPosition).getUser_count());
         return v;
     }
 
     // 차일드뷰를 반환한다.
     @Override
-    public String getChild(int groupPosition, int childPosition) {
+    public Block2 getChild(int groupPosition, int childPosition) {
         return childList.get(groupPosition).get(childPosition);
     }
 
@@ -96,13 +96,16 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
         View v = convertView;
         if(v == null){
             viewHolder = new ViewHolder();
-            v = inflater.inflate(R.layout.list_row, null);
-            viewHolder.tv_childName = (TextView) v.findViewById(R.id.tv_child);
+            v = inflater.inflate(R.layout.neighbor_neighbor_block_listview_item, null);
+            viewHolder.userId = (TextView) v.findViewById(R.id.user_id);
+            viewHolder.userCount = (TextView) v.findViewById(R.id.user_count);
             v.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)v.getTag();
         }
-        viewHolder.tv_childName.setText(getChild(groupPosition, childPosition));
+        viewHolder.userId.setText(getChild(groupPosition, childPosition).getUser_id2());
+        //count 가 없음...
+        viewHolder.userCount.setText("0");
         return v;
     }
 
@@ -113,9 +116,8 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) { return true; }
 
     class ViewHolder {
-        public ImageView iv_image;
-        public TextView tv_groupName;
-        public TextView tv_childName;
+        public TextView userId;
+        public TextView userCount;
     }
 }
 

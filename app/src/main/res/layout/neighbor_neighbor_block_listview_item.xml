@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CFE7C0"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -23,16 +24,13 @@
             android:paddingBottom="16dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:src="@drawable/curcle_blue"/>
 
             <TextView
                 android:id="@+id/user_id"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
+                android:layout_marginLeft="24dp"
+                android:gravity="left"
+                android:paddingLeft="4dp"
                 android:layout_height="wrap_content"/>
 
             <LinearLayout
@@ -49,16 +47,18 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:text="서울" />
+                    android:text="지역" />
 
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/user_count"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp" />
+                android:gravity="right"
+                android:paddingRight="4dp"
+                android:layout_marginRight="24dp" />
 
         </LinearLayout>
     </LinearLayout>

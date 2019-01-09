@@ -89,14 +89,26 @@ public class MyFarmFragment extends Fragment {
     }
 
     public void setSavePoint(String save_point) {
-        binding.saveSeedPoint.setText(MathUtil.stringToMoneyType(save_point));
+        if(save_point != null){
+            binding.saveSeedPoint.setText(MathUtil.stringToMoneyType(save_point));
+        }else{
+            binding.saveSeedPoint.setText("0");
+        }
     }
 
     public void setFarmPoint(String farm_point) {
-        binding.farmSeedPoint.setText(MathUtil.stringToMoneyType(farm_point));
+        if(farm_point != null){
+            binding.farmSeedPoint.setText(MathUtil.stringToMoneyType(farm_point));
+        }else{
+            binding.farmSeedPoint.setText("0");
+        }
     }
 
     public void setCashPoint(String cash_point) {
-        binding.cashSeedPoint.setText(MathUtil.stringToMoneyType(cash_point));
+        if(cash_point != null){
+            binding.cashSeedPoint.setText(MathUtil.stringToMoneyType(cash_point));
+        }else{
+            binding.cashSeedPoint.setText("0");
+        }
     }
 }
