@@ -207,7 +207,6 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        finish();
                     }
                 }).show();
     }

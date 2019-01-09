@@ -7,8 +7,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -24,18 +26,25 @@ import com.whyble.farm.seed.domain.neighborBlock.NeighborBlockList;
 import com.whyble.farm.seed.domain.seeds.farm.all.Farm;
 import com.whyble.farm.seed.domain.seeds.save.AllSaveList;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
+import com.whyble.farm.seed.view.sub.neighborBlock.adapter.BaseExpandableAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 //NeighborBlock
-public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> implements NeighborBlockIn.View{
+public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> implements NeighborBlockIn.View {
 
     ActivityNeighborBlockBinding binding;
 
     NeighborBlockIn.Presenter presenter;
 
     AbsractCommonAdapter<Block1> neighborBlockAdapter;
+
+    private ArrayList<String> mGroupList = null;
+    private ArrayList<ArrayList<String>> mChildList = null;
+    private ArrayList<String> mChildListContent = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,103 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
             @Override
             public void onClick(View v) {
                 openCamera();
+            }
+        });
+        setExpandableListView();
+    }
+
+
+    private void setExpandableListView() {
+
+        mGroupList = new ArrayList<String>();
+        mChildList = new ArrayList<ArrayList<String>>();
+
+        for (int i = 1; i < 10; i++) {
+            Log.e("HJLEE",  "I : " + String.valueOf(i));
+            mGroupList.add(String.valueOf(i));
+            mChildListContent = new ArrayList<String>();
+            for (int j = 0; j < i; j++) {
+                Log.e("HJLEE", "J : " + String.valueOf(j));
+                mChildListContent.add(String.valueOf(j));
+            }
+            mChildList.add(mChildListContent);
+        }
+
+       /* mGroupList = new ArrayList<String>();
+        mChildList = new ArrayList<ArrayList<String>>();
+        mChildListContent = new ArrayList<String>();
+
+        mGroupList.add("가위");
+        mGroupList.add("바위");
+        mGroupList.add("보");
+
+        mChildListContent.add("1");
+        mChildListContent.add("2");
+        mChildListContent.add("3");
+
+        mChildList.add(mChildListContent);
+        mChildList.add(mChildListContent);
+        mChildList.add(mChildListContent);*/
+
+        binding.seedListview.setAdapter(new BaseExpandableAdapter(this, mGroupList, mChildList));
+
+        // 그룹 클릭 했을 경우 이벤트
+        binding.seedListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                                        int groupPosition, long id) {
+                Toast.makeText(getApplicationContext(), "g click = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        // 차일드 클릭 했을 경우 이벤트
+        binding.seedListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Toast.makeText(getApplicationContext(), "c click = " + childPosition,
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        // 그룹이 닫힐 경우 이벤트
+        binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 그룹이 열릴 경우 이벤트
+        binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        // 그룹이 닫힐 경우 이벤트
+        binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 그룹이 열릴 경우 이벤트
+        binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -72,8 +178,10 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.totalSeed.setText("전체블록 : " + seed);
     }
 
+    //abhiandroid
+
     public void setSaveSeedList(List<Block1> list, List<Block2> list2) {
-        neighborBlockAdapter = new AbsractCommonAdapter<Block1>(NeighborBlockActivity.this, list) {
+        /*neighborBlockAdapter = new AbsractCommonAdapter<Block1>(NeighborBlockActivity.this, list) {
 
             NeighborBlockListviewItemBinding adapterBinding;
 
@@ -97,7 +205,7 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
                 return adapterBinding.getRoot();
             }
         };
-        binding.seedListview.setAdapter(neighborBlockAdapter);
+        binding.seedListview.setAdapter(neighborBlockAdapter);*/
     }
 
 }

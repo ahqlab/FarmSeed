@@ -111,7 +111,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         Log.e("HJLEE", "response : " + response.toString());
-        if (response.getResult().matches("3")) {
+        if (response.getResult().matches("6")) {
             finish();
         } else {
             super.showBasicOneBtnPopup(null, response.getMsg())
@@ -195,7 +195,6 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     @Override
     public void findRecommendResult(String s) {
-        Log.e("HJLEE", s);
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         super.showBasicOneBtnPopup(null, response.getMsg())
@@ -203,7 +202,6 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        finish();
                     }
                 }).show();
     }
