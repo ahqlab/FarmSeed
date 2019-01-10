@@ -57,17 +57,22 @@ public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements 
         return ShipmentActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         ShipmentList response = gson.fromJson(s, ShipmentList.class);
-        setSaveSeedList(response.getCash_list());
-        setTotalSeed(response.getCash());
+        if(response.getCash_list() != null){
+            setSaveSeedList(response.getCash_list());
+            setTotalSeed(response.getCash());
+        }
     }
 
     private void setTotalSeed(String seed) {
         binding.totalSeed.setText("전체 Seed : " + seed);
-        //binding.myTotalSeed.setText("전체 Seed : " + seed);
     }
 
     public void setSaveSeedList(List<Shipment> list) {

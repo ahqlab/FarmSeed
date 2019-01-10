@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
                     presenter.getMyTotlaSeeds();
                     return true;
                 case R.id.shopping_tab:
-                    replaceFragment(ShoppingFragment.newInstance());
+                    replaceFragment(MyFarmFragment.newInstance());
                     return true;
                 case R.id.bio_tab :
                     replaceFragment(BioBlockFragment.newInstance());

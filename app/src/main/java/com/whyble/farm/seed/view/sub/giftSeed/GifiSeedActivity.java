@@ -43,9 +43,15 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
         });
     }
 
+
     @Override
     protected BaseActivity<GifiSeedActivity> getActivityClass() {
         return GifiSeedActivity.this;
+    }
+
+
+    public void onClickBackBtn(View view){
+        finish();
     }
 
     @Override
@@ -55,17 +61,23 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
 
     @Override
     public void setSavePoint(String save_point) {
-        binding.saveSeedPoint.setText(MathUtil.stringToMoneyType(save_point));
+        if(save_point != null){
+            binding.saveSeedPoint.setText(MathUtil.stringToMoneyType(save_point));
+        }
     }
 
     @Override
     public void setFarmPoint(String farm_point) {
-        binding.farmSeedPoint.setText(MathUtil.stringToMoneyType(farm_point));
+        if(farm_point != null){
+            binding.farmSeedPoint.setText(MathUtil.stringToMoneyType(farm_point));
+        }
     }
 
     @Override
     public void setCashPoint(String cash_point) {
-        binding.cashSeedPoint.setText(MathUtil.stringToMoneyType(cash_point));
+        if(cash_point != null){
+            binding.cashSeedPoint.setText(MathUtil.stringToMoneyType(cash_point));
+        }
     }
 
     @Override

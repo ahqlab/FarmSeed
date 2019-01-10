@@ -53,7 +53,13 @@ public class BoardActivity extends BaseActivity<BoardActivity> implements BoardI
     public void setBoards(String s) {
         Gson gson = new Gson();
         NoticeList response = gson.fromJson(s, NoticeList.class);
-        setNoticeList(response.getNotice());
+        if(response.getNotice() != null){
+            setNoticeList(response.getNotice());
+        }
+    }
+
+    public void onClickBackBtn(View view){
+        finish();
     }
 
     private void setNoticeList(List<Notice> list) {

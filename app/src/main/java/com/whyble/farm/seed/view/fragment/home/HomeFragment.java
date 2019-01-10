@@ -29,6 +29,7 @@ import com.whyble.farm.seed.domain.seeds.cash.Cash;
 import com.whyble.farm.seed.domain.seeds.farm.Farm;
 import com.whyble.farm.seed.domain.seeds.notice.Notice;
 import com.whyble.farm.seed.domain.seeds.save.Save;
+import com.whyble.farm.seed.util.ViewUtil;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
@@ -127,7 +128,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void setSaveSeedList(List<Save> list) {
-        Log.e("HJLEE", list.toString());
         saveSeedAdapter = new AbsractCommonAdapter<Save>(getActivity(), list) {
 
             SaveSeedListviewItemBinding adapterBinding;
@@ -153,6 +153,7 @@ public class HomeFragment extends Fragment {
             }
         };
         binding.saveSeedListView.setAdapter(saveSeedAdapter);
+        ViewUtil.setListViewHeightBasedOnChildren(binding.saveSeedListView);
     }
 
     public void setFarmSeedList(List<Farm> list) {
@@ -181,6 +182,7 @@ public class HomeFragment extends Fragment {
             }
         };
         binding.farmSeedListView.setAdapter(farmSeedAdapter);
+        ViewUtil.setListViewHeightBasedOnChildren(binding.farmSeedListView);
     }
 
     public void setCashSeedList(List<Cash> list) {
@@ -209,6 +211,7 @@ public class HomeFragment extends Fragment {
             }
         };
         binding.mySeedListView.setAdapter(cashSeedAdapter);
+        ViewUtil.setListViewHeightBasedOnChildren(binding.mySeedListView);
     }
 
     public void setBonusSeedList(List<Bonus> list) {
@@ -237,6 +240,7 @@ public class HomeFragment extends Fragment {
             }
         };
         binding.bonusSeedListView.setAdapter(bonuaSeedAdapter);
+        ViewUtil.setListViewHeightBasedOnChildren(binding.bonusSeedListView);
     }
 
     public void showSaveSeedEmptyView(boolean show) {

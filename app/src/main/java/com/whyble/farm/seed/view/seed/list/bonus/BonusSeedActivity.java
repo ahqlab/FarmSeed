@@ -55,6 +55,10 @@ public class BonusSeedActivity extends BaseActivity<BonusSeedActivity> implement
         return BonusSeedActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();

@@ -54,12 +54,18 @@ public class GiftSeedHistoryActivity extends BaseActivity<GiftSeedHistoryActivit
         return GiftSeedHistoryActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         GiftList response = gson.fromJson(s, GiftList.class);
-        setSaveSeedList(response.getGift_list());
-        setTotalSeed(response.getPl_mi());
+        if(response.getGift_list() != null){
+            setSaveSeedList(response.getGift_list());
+            setTotalSeed(response.getPl_mi());
+        }
     }
 
     private void setSaveSeedList(List<Gift> list) {

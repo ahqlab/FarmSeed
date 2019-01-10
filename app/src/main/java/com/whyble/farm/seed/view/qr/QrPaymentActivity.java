@@ -39,12 +39,12 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
         binding.setActivity(QrPaymentActivity.this);
         presenter = new QrPaymentPresenter(QrPaymentActivity.this);
         presenter.loadData(QrPaymentActivity.this);
-        binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {
+     /*   binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCamera();
             }
-        });
+        });*/
     }
 
     @Override
@@ -52,11 +52,15 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
         return QrPaymentActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     public void onClickQRCodeScan(View view) {
         int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
-        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
-            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
         } else {
             IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
             integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -73,9 +77,9 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(getActivityClass(), R.string.cancelled, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivityClass(), R.string.cancelled, Toast.LENGTH_LONG).show();
             } else {
-                Log.e("HJLEE", ">>>>" + result.getContents());
+                //Log.e("HJLEE", ">>>>" + result.getContents());
                 binding.qecodeId.setText(result.getContents());
             }
         } else {
@@ -93,7 +97,12 @@ public class QrPaymentActivity extends BaseActivity<QrPaymentActivity> implement
                     int grantResult = grantResults[i];
                     if (permission.equals(Manifest.permission.CAMERA)) {
                         if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                            openCamera(); // start WIFIScan
+                            IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
+                            integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                            integrator.setScanningRectangle(800, 800);
+                            integrator.setPrompt(getString(R.string.qr_message));
+                            integrator.initiateScan();
                         } else {
                             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
                         }

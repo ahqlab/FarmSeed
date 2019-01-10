@@ -60,12 +60,18 @@ public class FarmSeedActivity extends BaseActivity<FarmSeedActivity> implements 
         return FarmSeedActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         FarmList response = gson.fromJson(s, FarmList.class);
-        setSaveSeedList(response.getFarm_list());
-        setTotalSeed(response.getFarm());
+        if(response.getFarm_list() != null){
+            setSaveSeedList(response.getFarm_list());
+            setTotalSeed(response.getFarm());
+        }
     }
 
     private void setTotalSeed(String seed) {

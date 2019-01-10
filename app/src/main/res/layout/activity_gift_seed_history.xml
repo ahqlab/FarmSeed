@@ -40,7 +40,8 @@
                     android:layout_width="14dp"
                     android:layout_height="24dp"
                     android:layout_margin="8dp"
-                    android:src="@drawable/left_back" />
+                    android:src="@drawable/left_back"
+                    android:onClick="@{activity::onClickBackBtn}"/>
 
 
                 <TextView

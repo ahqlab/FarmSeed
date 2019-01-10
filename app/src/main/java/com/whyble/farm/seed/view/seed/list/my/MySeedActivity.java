@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -23,6 +25,7 @@ import com.whyble.farm.seed.domain.seeds.cash.all.Cash;
 import com.whyble.farm.seed.domain.seeds.cash.all.CashList;
 import com.whyble.farm.seed.domain.seeds.farm.all.Farm;
 import com.whyble.farm.seed.domain.seeds.farm.all.FarmList;
+import com.whyble.farm.seed.util.ViewUtil;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 
 import java.util.List;
@@ -57,12 +60,18 @@ public class MySeedActivity extends BaseActivity<MySeedActivity> implements MySe
         return MySeedActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         CashList response = gson.fromJson(s, CashList.class);
-        setSaveSeedList(response.getSeed_list());
-        setTotalSeed(response.getSeed());
+        if(response.getSeed_list() != null){
+            setSaveSeedList(response.getSeed_list());
+            setTotalSeed(response.getSeed());
+        }
     }
 
     private void setTotalSeed(String seed) {
@@ -96,4 +105,5 @@ public class MySeedActivity extends BaseActivity<MySeedActivity> implements MySe
         };
         binding.seedListview.setAdapter(cashSeedAdapter);
     }
+
 }

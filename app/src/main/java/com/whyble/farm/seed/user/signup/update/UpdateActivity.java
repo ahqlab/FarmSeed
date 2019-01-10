@@ -62,6 +62,9 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         return UpdateActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
 
     @Override
     protected void onStart() {
@@ -71,12 +74,14 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     public void setAutoPhoneNumber() {
         int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE);
-        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(UpdateActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
-            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(UpdateActivity.this, Manifest.permission.READ_CONTACTS)) {
+            } else {
+                ActivityCompat.requestPermissions(UpdateActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
+            }
         } else {
-            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
-                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+            if (null != DeviceUtils.getPhoneNumber(UpdateActivity.this)) {
+                String userPhoneNumber = DeviceUtils.getPhoneNumber(UpdateActivity.this);
                 setPhoneumber(userPhoneNumber);
             }
         }
@@ -92,9 +97,11 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                     int grantResult = grantResults[i];
                     if (permission.equals(Manifest.permission.READ_PHONE_STATE)) {
                         if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
-                                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
-                                setPhoneumber(userPhoneNumber);
+                            if (null != DeviceUtils.getPhoneNumber(UpdateActivity.this)) {
+                                String userPhoneNumber = DeviceUtils.getPhoneNumber(UpdateActivity.this);
+                                binding.tel1.setText(userPhoneNumber.substring(0, 3));
+                                binding.tel2.setText(userPhoneNumber.substring(3, 7));
+                                binding.tel3.setText(userPhoneNumber.substring(7, 11));
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();

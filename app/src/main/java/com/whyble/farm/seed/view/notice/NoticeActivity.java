@@ -41,6 +41,11 @@ public class NoticeActivity extends BaseActivity<NoticeActivity> implements Noti
         return NoticeActivity.this;
     }
 
+
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     public void onClickNoticeBtn(View view){
         if (ValidationUtil.isEmptyOfEditText(binding.title)) {
             super.showBasicOneBtnPopup(null, "제목을 입력하세요")

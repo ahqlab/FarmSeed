@@ -58,12 +58,14 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     public void setAutoPhoneNumber() {
         int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE);
-        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(SignupActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
-            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SignupActivity.this, Manifest.permission.READ_CONTACTS)) {
+            } else {
+                ActivityCompat.requestPermissions(SignupActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, TextManager.READ_PHONE_STATE_CODE);
+            }
         } else {
-            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
-                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
+            if (null != DeviceUtils.getPhoneNumber(SignupActivity.this)) {
+                String userPhoneNumber = DeviceUtils.getPhoneNumber(SignupActivity.this);
                 setPhoneumber(userPhoneNumber);
             }
         }
@@ -79,9 +81,11 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                     int grantResult = grantResults[i];
                     if (permission.equals(Manifest.permission.READ_PHONE_STATE)) {
                         if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                            if (null != DeviceUtils.getPhoneNumber(getApplicationContext())) {
-                                String userPhoneNumber = DeviceUtils.getPhoneNumber(getApplicationContext());
-                                setPhoneumber(userPhoneNumber);
+                            if (null != DeviceUtils.getPhoneNumber(SignupActivity.this)) {
+                                String userPhoneNumber = DeviceUtils.getPhoneNumber(SignupActivity.this);
+                                binding.tel1.setText(userPhoneNumber.substring(0, 3));
+                                binding.tel2.setText(userPhoneNumber.substring(3, 7));
+                                binding.tel3.setText(userPhoneNumber.substring(7, 11));
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
@@ -137,7 +141,6 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
 
     }
-
 
 
     public void onClickTel1(View view) {
@@ -197,6 +200,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
             presenter.confirmRecommend(binding.getDomain().getRecommend());
         }
     }
+
     @Override
     public void findRecommendResult(String s) {
         Log.e("HJLEE", s);

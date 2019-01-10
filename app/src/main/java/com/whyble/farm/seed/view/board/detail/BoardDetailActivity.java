@@ -32,6 +32,7 @@ public class BoardDetailActivity extends BaseActivity<BoardDetailActivity> imple
 
     }
 
+
     @Override
     protected BaseActivity<BoardDetailActivity> getActivityClass() {
         return BoardDetailActivity.this;

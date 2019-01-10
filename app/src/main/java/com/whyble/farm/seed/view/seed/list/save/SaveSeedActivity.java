@@ -30,6 +30,7 @@ import com.whyble.farm.seed.domain.seeds.save.SaveList;
 import com.whyble.farm.seed.domain.seeds.save.AllSaveList;
 import com.whyble.farm.seed.domain.seeds.save.Save;
 import com.whyble.farm.seed.util.ValidationUtil;
+import com.whyble.farm.seed.util.ViewUtil;
 
 import java.util.List;
 
@@ -124,12 +125,18 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
         return SaveSeedActivity.this;
     }
 
+    public void onClickBackBtn(View view){
+        finish();
+    }
+
     @Override
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         AllSaveList response = gson.fromJson(s, AllSaveList.class);
-        setSaveSeedList(response.getSave_list());
-        setTotalSeed(response.getSave());
+        if(response.getSave_list() != null){
+            setSaveSeedList(response.getSave_list());
+            setTotalSeed(response.getSave());
+        }
     }
 
     @Override
