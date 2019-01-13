@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,6 +114,8 @@ public class BoardActivity extends BaseActivity<BoardActivity> implements BoardI
                     adapterBinding = (BoardListviewItemBinding) convertView.getTag();
                     adapterBinding.setDomain(boardSeedAdapter.data.get(position));
                 }
+
+                Log.e("HJLEE", ">>>" + adapterBinding.getDomain().getTitle().length());
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
