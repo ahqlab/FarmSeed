@@ -285,11 +285,12 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/currentMySeed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:text="163.007Seed"
                         android:textColor="@color/deep_red_text"
+                        android:text="0 Seed"
                         android:textSize="12sp" />
 
                     <TextView

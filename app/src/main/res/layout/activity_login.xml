@@ -83,6 +83,8 @@
                     android:maxLines="1"
                     android:gravity="left"
                     android:paddingLeft="4dp"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
                     android:background="@drawable/common_btn"/>
 
             </LinearLayout>

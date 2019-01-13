@@ -51,6 +51,12 @@ public class BonusSeedActivity extends BaseActivity<BonusSeedActivity> implement
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
+
+    @Override
     protected BaseActivity<BonusSeedActivity> getActivityClass() {
         return BonusSeedActivity.this;
     }

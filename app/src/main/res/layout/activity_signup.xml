@@ -162,6 +162,8 @@
                                 android:textSize="12sp"
                                 android:maxLines="1"
                                 android:text="@={domain.name}"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:layout_margin="16dp"/>
 
                         </LinearLayout>
@@ -210,6 +212,8 @@
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:layout_margin="16dp"/>
 
                         </LinearLayout>
@@ -261,6 +265,8 @@
                                 android:inputType="textPassword"
                                 android:padding="4dp"
                                 android:textSize="12sp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:maxLines="1"
                                 />
                             <TextView
@@ -320,6 +326,8 @@
                                 android:inputType="textPassword"
                                 android:padding="4dp"
                                 android:textSize="12sp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:maxLines="1"/>
 
                         </LinearLayout>
@@ -547,6 +555,8 @@
                                 android:background="@drawable/border_rect_gray"
                                 android:id="@+id/email"
                                 android:text="@={domain.email}"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:layout_margin="16dp"
                                 android:padding="4dp"
                                 android:textSize="12sp"
@@ -647,6 +657,8 @@
                                 android:layout_marginBottom="16dp"
                                 android:id="@+id/address1"
                                 android:text="@={domain.address1}"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"
@@ -797,6 +809,8 @@
                                 android:layout_margin="16dp"
                                 android:id="@+id/banknum"
                                 android:text="@={domain.banknum}"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
                                 android:padding="4dp"
                                 android:textSize="12sp"
                                 android:maxLines="1"/>

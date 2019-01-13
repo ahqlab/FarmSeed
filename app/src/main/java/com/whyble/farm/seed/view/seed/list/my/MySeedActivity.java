@@ -54,7 +54,11 @@ public class MySeedActivity extends BaseActivity<MySeedActivity> implements MySe
             }
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
     @Override
     protected BaseActivity<MySeedActivity> getActivityClass() {
         return MySeedActivity.this;

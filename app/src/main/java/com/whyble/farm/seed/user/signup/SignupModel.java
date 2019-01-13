@@ -33,7 +33,7 @@ public class SignupModel extends CommonModel {
     public void testLogin(User user, final DomainCallBackListner<String> domainCallBackListner) {
 
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        if(user.getName() != null){
+       if(user.getName() != null){
             nameValuePairs.add(new BasicNameValuePair("name", user.getName()));
         }
         if(user.getId() != null){
@@ -72,14 +72,31 @@ public class SignupModel extends CommonModel {
         if(user.getBankname() != null){
             nameValuePairs.add(new BasicNameValuePair("bankname", user.getBankname()));
         }
-        if(user.getBankname() != null){
-            nameValuePairs.add(new BasicNameValuePair("banknum", user.getBankname()));
+        if(user.getBanknum() != null){
+             nameValuePairs.add(new BasicNameValuePair("banknum", user.getBanknum()));
         }
         if(user.getRecommend() != null){
             nameValuePairs.add(new BasicNameValuePair("recommend", user.getRecommend()));
         }
-
-        new AbstractOldAsyncTask("member_ok2.php"){
+        /*nameValuePairs.add(new BasicNameValuePair("name", user.getName()));
+        nameValuePairs.add(new BasicNameValuePair("id", user.getId()));
+        nameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
+        nameValuePairs.add(new BasicNameValuePair("passwd", user.getPasswd()));
+        nameValuePairs.add(new BasicNameValuePair("passwd2", user.getPasswd2()));
+        nameValuePairs.add(new BasicNameValuePair("tel1", user.getTel1()));
+        nameValuePairs.add(new BasicNameValuePair("tel2", user.getTel2()));
+        nameValuePairs.add(new BasicNameValuePair("tel3", user.getTel3()));
+        nameValuePairs.add(new BasicNameValuePair("zipcorde", user.getZipcorde()));
+        nameValuePairs.add(new BasicNameValuePair("address", user.getAddress()));
+        nameValuePairs.add(new BasicNameValuePair("address1", user.getAddress1()));
+        nameValuePairs.add(new BasicNameValuePair("birthday", user.getBirthday()));
+        nameValuePairs.add(new BasicNameValuePair("bankname", user.getBankname()));
+        nameValuePairs.add(new BasicNameValuePair("banknum", user.getBanknum()));
+        if(user.getRecommend() != null){
+            nameValuePairs.add(new BasicNameValuePair("recommend", user.getRecommend()));
+        }
+*/
+        new AbstractOldAsyncTask("member_ok2.php") {
 
             @Override
             protected void doPostExecute(String d) {
@@ -97,7 +114,7 @@ public class SignupModel extends CommonModel {
     public void findRecommend(String recommend, final DomainCallBackListner<String> domainCallBackListner) {
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("recommend", recommend));
-        new AbstractOldAsyncTask("re_check.php"){
+        new AbstractOldAsyncTask("re_check.php") {
 
             @Override
             protected void doPostExecute(String d) {

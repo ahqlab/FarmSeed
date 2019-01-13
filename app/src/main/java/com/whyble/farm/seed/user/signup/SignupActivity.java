@@ -117,6 +117,7 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 
     @Override
     public void textSignupResult(String s) {
+        Log.e("HJLEE", "s : " + s);
         Gson gson = new Gson();
         ServerResponse response = gson.fromJson(s, ServerResponse.class);
         Log.e("HJLEE", "response : " + response.toString());
@@ -216,7 +217,6 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     }
 
     public void onClickSignupBtnClick(View view) {
-        Log.e("HJLEE", binding.getDomain().toString());
         if (ValidationUtil.isEmptyOfEditText(binding.name)) {
             super.showBasicOneBtnPopup(null, "이름를 입력하세요")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

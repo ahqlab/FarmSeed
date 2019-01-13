@@ -36,6 +36,8 @@ public class NoticeActivity extends BaseActivity<NoticeActivity> implements Noti
         });
     }
 
+
+
     @Override
     protected BaseActivity<NoticeActivity> getActivityClass() {
         return NoticeActivity.this;

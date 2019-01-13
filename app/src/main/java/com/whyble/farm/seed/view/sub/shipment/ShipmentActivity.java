@@ -57,6 +57,13 @@ public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements 
         return ShipmentActivity.this;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
+
+
     public void onClickBackBtn(View view){
         finish();
     }

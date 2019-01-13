@@ -63,4 +63,22 @@ public class GifiSeedModel extends CommonModel {
             }
         }.execute(nameValuePairs);
     }
+
+    public void currentMySeed(final DomainCallBackListner<String> domainCallBackListner) {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("valid_user", sharedPrefManager.getStringExtra(TextManager.VALID_USER)));
+
+        new AbstractOldAsyncTask("gift_cash.php"){
+
+            @Override
+            protected void doPostExecute(String d) {
+                domainCallBackListner.doPostExecute(d);
+            }
+
+            @Override
+            protected void doPreExecute() {
+
+            }
+        }.execute(nameValuePairs);
+    }
 }

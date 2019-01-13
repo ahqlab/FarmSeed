@@ -54,7 +54,11 @@ public class FarmSeedActivity extends BaseActivity<FarmSeedActivity> implements 
             }
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
     @Override
     protected BaseActivity<FarmSeedActivity> getActivityClass() {
         return FarmSeedActivity.this;

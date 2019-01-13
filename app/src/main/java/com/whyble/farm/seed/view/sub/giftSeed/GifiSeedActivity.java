@@ -17,6 +17,7 @@ import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivityGifiSeedBinding;
 import com.whyble.farm.seed.domain.ServerResponse;
+import com.whyble.farm.seed.domain.gift.giftSeed.Cash;
 import com.whyble.farm.seed.util.MathUtil;
 import com.whyble.farm.seed.util.ValidationUtil;
 
@@ -43,6 +44,12 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
         });
     }
 
+    @Override
+    protected void onResume() {
+        presenter.getMyTotlaSeeds();
+        presenter.currentMySeed();
+        super.onResume();
+    }
 
     @Override
     protected BaseActivity<GifiSeedActivity> getActivityClass() {
@@ -151,6 +158,21 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
                             dialog.dismiss();
                         }
                     }).show();
+        }
+        presenter.getMyTotlaSeeds();
+        presenter.currentMySeed();
+    }
+
+    @Override
+    public void setCurrentMySeed(String s) {
+        Log.e("HJLEE", "s : " + s);
+        if(s != null){
+            Gson gson = new Gson();
+            Cash cash = gson.fromJson(s, Cash.class);
+            Log.e("HJLEE", "Cash : " + cash);
+            if(cash.getCash().getCash() != null){
+                binding.currentMySeed.setText(MathUtil.stringToMoneyType(cash.getCash().getCash()) + "Seed");
+            }
         }
     }
 }

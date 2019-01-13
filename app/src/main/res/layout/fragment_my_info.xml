@@ -132,8 +132,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                                 android:text="-" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="@={domain.tel2}"
@@ -259,7 +259,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:paddingLeft="8dp">
+                            android:paddingLeft="4dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -303,12 +303,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingLeft="8dp">
+                            android:orientation="horizontal" >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp"
                                 android:text="@={domain.address}"
                                 android:textSize="15sp" />
 

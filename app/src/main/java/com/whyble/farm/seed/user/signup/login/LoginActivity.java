@@ -39,7 +39,11 @@ public class LoginActivity extends BaseActivity<LoginActivity> implements LoginI
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         presenter = new LoginPresenter(this);
         presenter.loadData(LoginActivity.this);
-        autoLogin();
+
+        String id = sharedPrefManager.getStringExtra(TextManager.VALID_USER);
+        if(!id.matches("")){
+            autoLogin();
+        }
     }
 
     public void autoLogin(){

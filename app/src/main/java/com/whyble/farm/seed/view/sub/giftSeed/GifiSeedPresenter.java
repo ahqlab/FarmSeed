@@ -76,4 +76,19 @@ public class GifiSeedPresenter implements GifiSeedIn.Presenter {
             }
         });
     }
+
+    @Override
+    public void currentMySeed() {
+        model.currentMySeed( new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setCurrentMySeed(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }

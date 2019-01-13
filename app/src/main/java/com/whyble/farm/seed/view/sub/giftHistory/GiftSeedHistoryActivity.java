@@ -50,6 +50,12 @@ public class GiftSeedHistoryActivity extends BaseActivity<GiftSeedHistoryActivit
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
+
+    @Override
     protected BaseActivity<GiftSeedHistoryActivity> getActivityClass() {
         return GiftSeedHistoryActivity.this;
     }

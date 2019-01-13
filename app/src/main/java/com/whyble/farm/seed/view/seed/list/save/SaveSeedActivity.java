@@ -57,7 +57,11 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
             }
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
    /* public void openCamera() {
         IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
         integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -161,6 +165,7 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
                     }).show();
 
         }
+        presenter.getSeeds();
     }
 
     private void setTotalSeed(String seed) {

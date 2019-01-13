@@ -17,6 +17,8 @@ public class GifiSeedIn {
         void setSearchResult(String s);
 
         void setSendResult(String s);
+
+        void setCurrentMySeed(String s);
     }
     interface Presenter{
 
@@ -27,5 +29,7 @@ public class GifiSeedIn {
         void getSearchUser(String s);
 
         void sendGiftSeed(String userId, String point);
+
+        void currentMySeed();
     }
 }

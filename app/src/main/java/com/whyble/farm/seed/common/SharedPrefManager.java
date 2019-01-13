@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
     //프리퍼런스 KEY값
-    public static final String PREFERENCE_NAME = "hodoo_scale_pre";
+    public static final String PREFERENCE_NAME = "farm_seed_pre";
     private static SharedPrefManager sharedPrefManager = null;
     private static Context mContext;
     private static SharedPreferences prefs;

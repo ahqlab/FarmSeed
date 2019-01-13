@@ -64,6 +64,13 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getSeeds();
+    }
+
+
+    @Override
     protected BaseActivity<NeighborBlockActivity> getActivityClass() {
         return NeighborBlockActivity.this;
     }
@@ -76,9 +83,14 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         NeighborBlockList response = gson.fromJson(s, NeighborBlockList.class);
-        if(response.getBlock1() != null){
+        Log.e("HJLEE", s + " << s");
+       /* Log.e("HJLEE", response.getBlock1().size() + "");
+        Log.e("HJLEE", response.getBlock2().size() + "");*/
+        if(Integer.parseInt(response.getTotal()) > 0){
             setSaveSeedList(response.getBlock1(), response.getBlock2());
             setTotalSeed(response.getTotal());
+        }else{
+
         }
     }
 
@@ -127,8 +139,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                Toast.makeText(getApplicationContext(), "g click = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), "g click = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();*/
                 return false;
             }
         });
@@ -138,8 +150,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                Toast.makeText(getApplicationContext(), "c click = " + childPosition,
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), "c click = " + childPosition,
+                        Toast.LENGTH_SHORT).show();*/
                 return false;
             }
         });
@@ -148,8 +160,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();
+              /*  Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -157,8 +169,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -168,8 +180,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -177,8 +189,8 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();
+              /*  Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
 

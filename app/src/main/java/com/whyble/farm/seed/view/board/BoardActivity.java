@@ -45,6 +45,12 @@ public class BoardActivity extends BaseActivity<BoardActivity> implements BoardI
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getBoards();
+    }
+
+    @Override
     protected BaseActivity<BoardActivity> getActivityClass() {
         return BoardActivity.this;
     }

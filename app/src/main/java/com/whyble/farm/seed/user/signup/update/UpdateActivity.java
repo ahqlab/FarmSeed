@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.whyble.farm.seed.R;
+import com.whyble.farm.seed.common.SharedPrefManager;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySignupBinding;
 import com.whyble.farm.seed.databinding.ActivityUpdateBinding;
@@ -26,6 +27,7 @@ import com.whyble.farm.seed.domain.EditUser;
 import com.whyble.farm.seed.domain.ServerResponse;
 import com.whyble.farm.seed.domain.User;
 import com.whyble.farm.seed.user.signup.SignupActivity;
+import com.whyble.farm.seed.user.signup.login.LoginActivity;
 import com.whyble.farm.seed.util.TextManager.TextManager;
 import com.whyble.farm.seed.util.ValidationUtil;
 import com.whyble.farm.seed.util.device.DeviceUtils;
@@ -41,6 +43,8 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
 
     private DatePickerDialog picker;
 
+    SharedPrefManager sharedPrefManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         presenter = new UpdatePresenter(UpdateActivity.this);
         presenter.loadData(UpdateActivity.this);
         presenter.getUserInfo();
+        sharedPrefManager = SharedPrefManager.getInstance(UpdateActivity.this);
         binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +131,10 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
+                            sharedPrefManager.removeAllPreferences();
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }).show();
         }
