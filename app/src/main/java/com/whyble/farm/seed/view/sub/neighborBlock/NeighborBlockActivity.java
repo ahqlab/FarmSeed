@@ -1,31 +1,38 @@
 package com.whyble.farm.seed.view.sub.neighborBlock;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.whyble.farm.seed.MainActivity;
 import com.whyble.farm.seed.R;
-import com.whyble.farm.seed.common.adapter.AbsractCommonAdapter;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivityNeighborBlockBinding;
-import com.whyble.farm.seed.databinding.AllFarmSeedListviewItemBinding;
-import com.whyble.farm.seed.databinding.NeighborBlockListviewItemBinding;
 import com.whyble.farm.seed.domain.neighborBlock.Block1;
 import com.whyble.farm.seed.domain.neighborBlock.Block2;
 import com.whyble.farm.seed.domain.neighborBlock.NeighborBlockList;
-import com.whyble.farm.seed.domain.seeds.farm.all.Farm;
-import com.whyble.farm.seed.domain.seeds.save.AllSaveList;
+import com.whyble.farm.seed.user.signup.login.LoginActivity;
+import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
+import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
+import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
 import com.whyble.farm.seed.view.sub.neighborBlock.adapter.BaseExpandableAdapter;
 
 import java.util.ArrayList;
@@ -33,18 +40,21 @@ import java.util.List;
 
 
 //NeighborBlock
-public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> implements NeighborBlockIn.View {
+public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> implements NeighborBlockIn.View, NavigationView.OnNavigationItemSelectedListener {
 
     ActivityNeighborBlockBinding binding;
 
     NeighborBlockIn.Presenter presenter;
 
-    AbsractCommonAdapter<Block1> neighborBlockAdapter;
-
     private ArrayList<Block1> mGroupList = null;
+
     private ArrayList<ArrayList<Block2>> mChildList = null;
+
     private ArrayList<Block2> mChildListContent = null;
 
+    private BaseExpandableAdapter baseExpandableAdapter;
+
+    android.app.AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +71,19 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
                 openCamera();
             }
         });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivityClass(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -75,7 +98,7 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         return NeighborBlockActivity.this;
     }
 
-    public void onClickBackBtn(View view){
+    public void onClickBackBtn(View view) {
         finish();
     }
 
@@ -83,15 +106,57 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         NeighborBlockList response = gson.fromJson(s, NeighborBlockList.class);
-        Log.e("HJLEE", s + " << s");
-       /* Log.e("HJLEE", response.getBlock1().size() + "");
-        Log.e("HJLEE", response.getBlock2().size() + "");*/
-        if(Integer.parseInt(response.getTotal()) > 0){
+        if (Integer.parseInt(response.getTotal()) > 0) {
             setSaveSeedList(response.getBlock1(), response.getBlock2());
             setTotalSeed(response.getTotal());
-        }else{
+        } else {
 
         }
+    }
+
+    @Override
+    public void setDialogView(String s) {
+        Gson gson = new Gson();
+        NeighborBlockList response = gson.fromJson(s, NeighborBlockList.class);
+        if (Integer.parseInt(response.getTotal()) > 0) {
+            setDialogSetting(response.getBlock1(), response.getBlock2());
+        }
+
+    }
+
+    private void setDialogSetting(List<Block1> list, List<Block2> list2) {
+        ArrayList<Block1>  mGroupList = new ArrayList<Block1>();
+        ArrayList<ArrayList<Block2>> mChildList = new ArrayList<ArrayList<Block2>>();
+        ArrayList<Block2> mChildListContent = new ArrayList<Block2>();
+
+        for (int i = 0; i < list.size(); i++) {
+            mGroupList.add(list.get(i));
+            mChildListContent = new ArrayList<Block2>();
+            for (int j = 0; j < list2.size(); j++) {
+                if (list.get(i).getUser_id().matches(list2.get(j).getUser_id())) {
+                    mChildListContent.add(list2.get(j));
+                }
+            }
+            mChildList.add(mChildListContent);
+        }
+
+        BaseExpandableAdapter adapter = new BaseExpandableAdapter(this, mGroupList, mChildList);
+
+        LayoutInflater inflater = ((LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        View customView = inflater.inflate(R.layout.custom_neigbor_block_dialog, null, false);
+        ExpandableListView listView = (ExpandableListView) customView.findViewById(R.id.listview);
+        listView.setAdapter(adapter);
+
+        builder =  showBasicOneBtnPopup(null, null);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.setView(customView);
+        builder.show();
+
     }
 
     private void setTotalSeed(String seed) {
@@ -109,38 +174,22 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
             mGroupList.add(list.get(i));
             mChildListContent = new ArrayList<Block2>();
             for (int j = 0; j < list2.size(); j++) {
-                if(list.get(i).getUser_id().matches(list2.get(j).getUser_id())){
+                if (list.get(i).getUser_id().matches(list2.get(j).getUser_id())) {
                     mChildListContent.add(list2.get(j));
                 }
             }
             mChildList.add(mChildListContent);
         }
 
-       /* mGroupList = new ArrayList<String>();
-        mChildList = new ArrayList<ArrayList<String>>();
-        mChildListContent = new ArrayList<String>();
+        baseExpandableAdapter = new BaseExpandableAdapter(this, mGroupList, mChildList);
 
-        mGroupList.add("가위");
-        mGroupList.add("바위");
-        mGroupList.add("보");
-
-        mChildListContent.add("1");
-        mChildListContent.add("2");
-        mChildListContent.add("3");
-
-        mChildList.add(mChildListContent);
-        mChildList.add(mChildListContent);
-        mChildList.add(mChildListContent);*/
-
-        binding.seedListview.setAdapter(new BaseExpandableAdapter(this, mGroupList, mChildList));
+        binding.seedListview.setAdapter(baseExpandableAdapter);
 
         // 그룹 클릭 했을 경우 이벤트
         binding.seedListview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                /*Toast.makeText(getApplicationContext(), "g click = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();*/
                 return false;
             }
         });
@@ -148,10 +197,10 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         // 차일드 클릭 했을 경우 이벤트
         binding.seedListview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                /*Toast.makeText(getApplicationContext(), "c click = " + childPosition,
-                        Toast.LENGTH_SHORT).show();*/
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                if(baseExpandableAdapter.getChild(groupPosition, childPosition) != null){
+                    showCustomDialog(baseExpandableAdapter.getChild(groupPosition, childPosition).getUser_id2());
+                }
                 return false;
             }
         });
@@ -160,8 +209,6 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-              /*  Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -169,19 +216,14 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-               /* Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();*/
             }
         });
-
 
 
         // 그룹이 닫힐 경우 이벤트
         binding.seedListview.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-               /* Toast.makeText(getApplicationContext(), "g Collapse = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -189,37 +231,45 @@ public class NeighborBlockActivity extends BaseActivity<NeighborBlockActivity> i
         binding.seedListview.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-              /*  Toast.makeText(getApplicationContext(), "g Expand = " + groupPosition,
-                        Toast.LENGTH_SHORT).show();*/
             }
         });
 
-
-        /*neighborBlockAdapter = new AbsractCommonAdapter<Block1>(NeighborBlockActivity.this, list) {
-
-            NeighborBlockListviewItemBinding adapterBinding;
-
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = neighborBlockAdapter.inflater.inflate(R.layout.neighbor_block_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain1(neighborBlockAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (NeighborBlockListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain1(neighborBlockAdapter.data.get(position));
-                }
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
-                    }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.seedListview.setAdapter(neighborBlockAdapter);*/
     }
 
+    public void showCustomDialog(String userId) {
+        presenter.getSeeds(userId);
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        int id = menuItem.getItemId();
+        if (id == R.id.draw_save_seed) {
+            Intent intent = new Intent(getApplicationContext(), SaveSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_farm_seed) {
+            Intent intent = new Intent(getApplicationContext(), FarmSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_harvest_history) {
+            Intent intent = new Intent(getApplicationContext(), MySeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_bonus_seed) {
+            Intent intent = new Intent(getApplicationContext(), BonusSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.logout) {
+            mSharedPrefManager.removeAllPreferences();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            ((MainActivity) MainActivity.mContext).finish();
+            finish();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

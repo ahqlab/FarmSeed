@@ -9,7 +9,7 @@
             android:title="@string/logout" />
     </group>
 
-    <item android:title="@string/my_page">
+  <!--  <item android:title="@string/my_page">
         <menu>
             <item
                 android:id="@+id/draw_home"
@@ -27,7 +27,7 @@
                 android:id="@+id/draw_my_info"
                 android:title="@string/my_info" />
         </menu>
-    </item>
+    </item>-->
 
     <item android:title="@string/history">
         <menu>

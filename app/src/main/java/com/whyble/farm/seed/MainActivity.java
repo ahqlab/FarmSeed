@@ -1,6 +1,7 @@
 package com.whyble.farm.seed;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -40,6 +41,7 @@ import com.whyble.farm.seed.view.fragment.home.HomeFragment;
 import com.whyble.farm.seed.view.fragment.myfarm.MyFarmFragment;
 import com.whyble.farm.seed.view.fragment.myinfo.MyInfoFragment;
 import com.whyble.farm.seed.view.fragment.shopping.ShoppingFragment;
+import com.whyble.farm.seed.view.qr.QrPaymentActivity;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
@@ -49,6 +51,8 @@ import com.whyble.farm.seed.view.sub.giftHistory.GiftSeedHistoryActivity;
 import org.w3c.dom.Text;
 
 public class MainActivity extends BaseActivity<MainActivity> implements NavigationView.OnNavigationItemSelectedListener , MainIn.View {
+
+    public static Context mContext;
 
     ActivityMainBinding binding;
 
@@ -68,6 +72,7 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mContext = this;
         binding.setActivity(this);
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         presenter = new MainPresenter(this);
@@ -97,8 +102,13 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
 
     }
 
+    public void test(){
+
+    }
+
     public void onClickQrcode(View videw){
-        openCamera();
+        Intent intent = new Intent(MainActivity.this, QrPaymentActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -113,8 +123,35 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
         fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    public void setHomeFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(HomeFragment.newInstance(), "HomeFragment Tag").commitAllowingStateLoss();
+        presenter.getSeeds();
+    }
+
+    public void setMyFarmFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(MyFarmFragment.newInstance(), "MyFarmFragment Tag").commitAllowingStateLoss();
+        presenter.getMyTotlaSeeds();
+    }
+
+    public void setShopingragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(MyFarmFragment.newInstance(), "MyFarmFragment Tag").commitAllowingStateLoss();
+        presenter.getMyTotlaSeeds();
+    }
+
+    public void setBioFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(BioBlockFragment.newInstance(), "BioBlockFragment Tag").commitAllowingStateLoss();
+    }
+
+    public void setMyInfoFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(MyInfoFragment.newInstance(), "MyInfoFragment Tag").commitAllowingStateLoss();
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener  = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -175,8 +212,6 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.info_edit){
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,10 +1,12 @@
 package com.whyble.farm.seed.view.sub.neighborBlock.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.whyble.farm.seed.R;
@@ -27,6 +29,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
         this.groupList = groupList;
         this.childList = childList;
     }
+
 
     // 그룹 포지션을 반환한다.
     @Override

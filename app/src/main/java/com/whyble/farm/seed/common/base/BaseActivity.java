@@ -11,8 +11,11 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,7 +30,7 @@ import com.whyble.farm.seed.common.SharedPrefManager;
 import com.whyble.farm.seed.user.signup.login.LoginActivity;
 import com.whyble.farm.seed.view.qr.QrPaymentActivity;
 
-public abstract class BaseActivity<D extends Activity> extends AppCompatActivity implements BaseIn.View{
+public abstract class BaseActivity<D extends Activity> extends AppCompatActivity implements BaseIn.View {
 
     protected final String TAG = "HJLEE";
 
@@ -43,6 +46,7 @@ public abstract class BaseActivity<D extends Activity> extends AppCompatActivity
         mSharedPrefManager = SharedPrefManager.getInstance(getActivityClass());
         presenter = new BasePresenter(getActivityClass());
         presenter.loadData(getActivityClass());
+
     }
 
     protected abstract BaseActivity<D> getActivityClass();
@@ -105,20 +109,7 @@ public abstract class BaseActivity<D extends Activity> extends AppCompatActivity
     public void openCamera() {
         Intent intent = new Intent(getActivityClass(), QrPaymentActivity.class);
         startActivity(intent);
-        //finish();
-       /* int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
-        if (permissionCamera == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
-            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
-        } else {
-            IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
-            integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-            integrator.setScanningRectangle(800, 800);
-            integrator.setPrompt(getString(R.string.qr_message));
-            integrator.initiateScan();
-        }*/
-
+        finish();
     }
 
     public AlertDialog.Builder showBasicOneBtnPopup(String title, String message) {

@@ -41,4 +41,22 @@ public class NeighborBlockModel extends CommonModel {
             }
         }.execute(nameValuePairs);
     }
+
+    public void getSeeds(String userId, final DomainCallBackListner<String> domainCallBackListner) {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("valid_user", userId));
+
+        new AbstractOldAsyncTask("block.php"){
+
+            @Override
+            protected void doPostExecute(String d) {
+                domainCallBackListner.doPostExecute(d);
+            }
+
+            @Override
+            protected void doPreExecute() {
+
+            }
+        }.execute(nameValuePairs);
+    }
 }

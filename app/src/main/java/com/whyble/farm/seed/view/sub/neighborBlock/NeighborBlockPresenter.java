@@ -34,4 +34,19 @@ public class NeighborBlockPresenter implements NeighborBlockIn.Presenter {
             }
         });
     }
+
+    @Override
+    public void getSeeds(String userId) {
+        model.getSeeds(userId, new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setDialogView(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }
