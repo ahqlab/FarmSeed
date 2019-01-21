@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class BonusList extends Domain {
 
-    private String bonus;
+    private String bouns;
 
     private List<Bonus> bouns_list;
 }

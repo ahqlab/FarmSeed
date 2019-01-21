@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,11 +93,14 @@ public class BonusSeedActivity extends BaseActivity<BonusSeedActivity> implement
 
     @Override
     public void getSeedResult(String s) {
+        Log.e("HJLEE", "s : " + s);
         Gson gson = new Gson();
         BonusList response = gson.fromJson(s, BonusList.class);
+        Log.e("HJLEE", "response : " + response);
         if(response.getBouns_list() != null){
+            Log.e("HJLEE", "response.getBouns_list() : " + response.getBouns_list().size());
             setSaveSeedList(response.getBouns_list());
-            setTotalSeed(response.getBonus());
+            setTotalSeed(response.getBouns());
         }
     }
 

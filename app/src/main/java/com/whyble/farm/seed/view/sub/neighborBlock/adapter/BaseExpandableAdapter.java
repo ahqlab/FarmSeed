@@ -108,7 +108,7 @@ public class BaseExpandableAdapter extends BaseExpandableListAdapter {
         }
         viewHolder.userId.setText(getChild(groupPosition, childPosition).getUser_id2());
         //count 가 없음...
-        viewHolder.userCount.setText("0");
+        viewHolder.userCount.setText(getChild(groupPosition, childPosition).getCount_cc());
         return v;
     }
 
