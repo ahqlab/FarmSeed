@@ -860,7 +860,7 @@
                                 android:orientation="horizontal">
 
                                 <EditText
-                                    android:layout_width="100dp"
+                                    android:layout_width="110dp"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/border_rect_gray"
                                     android:layout_marginTop="16dp"
@@ -875,7 +875,7 @@
                                     />
 
                                 <Button
-                                    android:layout_width="100dp"
+                                    android:layout_width="70dp"
                                     android:layout_height="25dp"
                                     android:background="@drawable/common_blue_btn"
                                     android:textColor="@color/white"
@@ -883,6 +883,17 @@
                                     android:textSize="8dp"
                                     android:text="추천인확인"
                                     android:onClick="@{activity::onClickConfirmRecommendBtnClick}"/>
+
+                                <Button
+                                    android:layout_width="30dp"
+                                    android:layout_height="25dp"
+                                    android:background="@drawable/common_blue_btn"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="8dp"
+                                    android:text="QR"
+                                    android:layout_marginLeft="4dp"
+                                    android:onClick="@{activity::onClickQrCode}"/>
 
                             </LinearLayout>
 

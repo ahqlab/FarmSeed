@@ -30,6 +30,7 @@ import com.whyble.farm.seed.domain.seeds.farm.Farm;
 import com.whyble.farm.seed.domain.seeds.notice.Notice;
 import com.whyble.farm.seed.domain.seeds.save.Save;
 import com.whyble.farm.seed.util.ViewUtil;
+import com.whyble.farm.seed.view.friend.invite.InviteFriendActivity;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
@@ -123,8 +124,8 @@ public class HomeFragment extends Fragment {
         startActivity(intent);
     }
     public void onClickInco2(View view) {
-        /*Intent intent = new Intent(getActivity(), BonusSeedActivity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(getActivity(), InviteFriendActivity.class);
+        startActivity(intent);
     }
 
     public void setSaveSeedList(List<Save> list) {

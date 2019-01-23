@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
@@ -20,6 +21,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySignupBinding;
@@ -87,6 +90,22 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                                 binding.tel2.setText(userPhoneNumber.substring(3, 7));
                                 binding.tel3.setText(userPhoneNumber.substring(7, 11));
                             }
+                        } else {
+                            Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } case CAMERA_PERMISSION_CODE:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (permission.equals(Manifest.permission.CAMERA)) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                            IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
+                            integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                            integrator.setScanningRectangle(800, 800);
+                            integrator.setPrompt(getString(R.string.qr_message));
+                            integrator.initiateScan();
                         } else {
                             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
                         }
@@ -335,6 +354,17 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                //Toast.makeText(getActivityClass(), R.string.cancelled, Toast.LENGTH_LONG).show();
+            } else {
+                //Log.e("HJLEE", ">>>>" + result.getContents());
+                binding.recommend.setText(result.getContents());
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
         if (requestCode == TextManager.ZIPCODE_REQUST_CODE) {
             if (resultCode == RESULT_OK) {
                 String zipcorde = data.getStringExtra("zipcorde");
@@ -363,4 +393,25 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                 }, year, month, day);
         picker.show();
     }
+
+    public void onClickQrCode(View view){
+        int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+            //Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
+        } else {
+            IntentIntegrator integrator = new IntentIntegrator(getActivityClass());
+            integrator.setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+            integrator.setScanningRectangle(800, 800);
+            integrator.setPrompt(getString(R.string.qr_message));
+            integrator.initiateScan();
+        }
+    }
+
+
+
+
+
+
 }

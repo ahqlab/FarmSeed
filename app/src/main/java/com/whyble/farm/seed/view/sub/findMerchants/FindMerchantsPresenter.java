@@ -34,4 +34,19 @@ public class FindMerchantsPresenter implements FindMerchantsIn.Presenter {
             }
         });
     }
+
+    @Override
+    public void getChainList() {
+        model.getChainList(new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setChainList(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }

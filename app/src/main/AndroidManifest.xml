@@ -27,8 +27,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA55VHiduzK7x3noqovYgi7YKKa53xyTrM" />
-
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="56cd248623a6215cef9ee05a30357d21"/>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="56cd248623a6215cef9ee05a30357d21" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -57,7 +58,7 @@
         <activity android:name=".view.sub.giftHistory.GiftSeedHistoryActivity" />
         <activity android:name=".view.sub.merchantUseHistory.MerchantUseHistoryActivity" />
         <activity android:name=".view.sub.findMerchants.FindMerchantsActivity" />
-        <activity android:name=".view.sub.findMerchants.MapViewDemoActivity"></activity>
+        <activity android:name=".view.sub.findMerchants.MapViewDemoActivity" />
         <activity android:name=".view.sub.applyingForMerchant.ApplyingForMerchantActivity" />
         <activity android:name=".user.signup.SignupActivity" />
         <activity android:name=".user.signup.update.UpdateActivity" />
@@ -67,8 +68,8 @@
         <activity android:name=".view.daum.DaumActivity" />
         <activity android:name=".view.board.BoardActivity" />
         <activity android:name=".view.sub.shipment.ShipmentActivity" />
-        <activity android:name=".view.board.detail.BoardDetailActivity"></activity>
-
+        <activity android:name=".view.board.detail.BoardDetailActivity" />
+        <activity android:name=".view.friend.invite.InviteFriendActivity"></activity>
     </application>
 
 </manifest>

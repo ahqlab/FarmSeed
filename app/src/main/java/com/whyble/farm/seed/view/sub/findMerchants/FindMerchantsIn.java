@@ -7,10 +7,16 @@ public class FindMerchantsIn {
     interface View{
 
         void searchResult(String s);
+
+        void setChainList(String s);
     }
+
     interface Presenter{
+
         void loadData(Context context);
 
         void searchMerchants(String str);
+
+        void getChainList();
     }
 }

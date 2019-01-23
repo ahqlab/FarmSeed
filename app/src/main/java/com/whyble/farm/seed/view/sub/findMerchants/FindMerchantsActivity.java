@@ -1,5 +1,6 @@
 package com.whyble.farm.seed.view.sub.findMerchants;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.location.Address;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +19,15 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.whyble.farm.seed.R;
+import com.whyble.farm.seed.common.adapter.AbsractCommonAdapter;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivityFindMerchantsBinding;
+import com.whyble.farm.seed.databinding.AllBonusSeedListviewItemBinding;
+import com.whyble.farm.seed.databinding.MemberShipListviewItemBinding;
+import com.whyble.farm.seed.domain.Domain;
+import com.whyble.farm.seed.domain.seeds.bonus.all.Bonus;
 import com.whyble.farm.seed.util.ValidationUtil;
+import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
@@ -27,6 +35,7 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Data;
@@ -45,9 +54,10 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
 
     private InputMethodManager imm;
 
+    AbsractCommonAdapter<MemberShip> memnberShipAdapter;
+
     @Override
     public void searchResult(String s) {
-        Log.e("HJLEE", s);
         if (s != null) {
             Gson gson = new Gson();
             SearchResult result = gson.fromJson(s, SearchResult.class);
@@ -61,12 +71,53 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            mMapView.removeAllPOIItems();
                             dialog.dismiss();
                         }
                     }).show();
         }
 
     }
+
+    @Override
+    public void setChainList(String s) {
+        if (s != null) {
+            Gson gson = new Gson();
+            MemberShipList list = gson.fromJson(s, MemberShipList.class);
+            setListview(list.getMembership_list());
+        }
+    }
+
+    private void setListview(List<MemberShip> list) {
+
+        binding.listCount.setText(String.valueOf(list.size()));
+        memnberShipAdapter = new AbsractCommonAdapter<MemberShip>(FindMerchantsActivity.this, list) {
+
+            MemberShipListviewItemBinding adapterBinding;
+
+            @Override
+            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = memnberShipAdapter.inflater.inflate(R.layout.member_ship_listview_item, null);
+                    adapterBinding = DataBindingUtil.bind(convertView);
+                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
+                    convertView.setTag(adapterBinding);
+                } else {
+                    adapterBinding = (MemberShipListviewItemBinding) convertView.getTag();
+                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
+                }
+                convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        return false;
+                    }
+                });
+                return adapterBinding.getRoot();
+            }
+        };
+        binding.listview.setAdapter(memnberShipAdapter);
+    }
+
 
     class CustomCalloutBalloonAdapter implements CalloutBalloonAdapter {
         private final View mCalloutBalloon;
@@ -93,19 +144,31 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     }
 
     @Data
-    class SearchResult {
+    public class SearchResult implements Serializable{
         private String x;
         private String y;
         private String m_comname;
         private String addr;
     }
 
+    @Data
+    public class MemberShipList implements Serializable{
+        List<MemberShip> membership_list;
+    }
+
+    @Data
+    public class MemberShip implements Serializable {
+        private String m_comname;
+        private String m_category;
+    }
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_find_merchants);
         binding = DataBindingUtil.setContentView(FindMerchantsActivity.this, R.layout.activity_find_merchants);
-        binding.setActivity(FindMerchantsActivity.this);
+        binding.setActivity(this);
         presenter = new FindMerchantsPresenter(FindMerchantsActivity.this);
         presenter.loadData(FindMerchantsActivity.this);
 
@@ -221,4 +284,9 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
 
     }
 
+    @Override
+    protected void onResume() {
+        presenter.getChainList();
+        super.onResume();
+    }
 }

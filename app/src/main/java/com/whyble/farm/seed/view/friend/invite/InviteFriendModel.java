@@ -1,4 +1,4 @@
-package com.whyble.farm.seed.view.sub.findMerchants;
+package com.whyble.farm.seed.view.friend.invite;
 
 import android.content.Context;
 
@@ -13,7 +13,7 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindMerchantsModel extends CommonModel {
+public class InviteFriendModel extends CommonModel {
 
     Context context;
 
@@ -24,28 +24,12 @@ public class FindMerchantsModel extends CommonModel {
         sharedPrefManager = SharedPrefManager.getInstance(context);
     }
 
-    public void searchMerchants(String str, final DomainCallBackListner<String> domainCallBackListner) {
+    public void getFriendInfo(final DomainCallBackListner<String> domainCallBackListner) {
+
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("key", str));
+        nameValuePairs.add(new BasicNameValuePair("valid_user", sharedPrefManager.getStringExtra(TextManager.VALID_USER)));
 
-        new AbstractOldAsyncTask("membership_find.php"){
-
-            @Override
-            protected void doPostExecute(String d) {
-                domainCallBackListner.doPostExecute(d);
-            }
-
-            @Override
-            protected void doPreExecute() {
-
-            }
-        }.execute(nameValuePairs);
-    }
-
-    public void getChainList(final DomainCallBackListner<String> domainCallBackListner) {
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-        new AbstractOldAsyncTask("membership_list.php"){
+        new AbstractOldAsyncTask("friend.php") {
 
             @Override
             protected void doPostExecute(String d) {
