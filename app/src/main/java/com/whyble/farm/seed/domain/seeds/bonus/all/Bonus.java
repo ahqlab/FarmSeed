@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class Bonus extends Domain {
 
-    private String bouns_point;
+    private String bonus_point;
 
     private String signdate;
 }

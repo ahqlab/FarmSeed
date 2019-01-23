@@ -3,9 +3,13 @@ package com.whyble.farm.seed.user.signup.login;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
@@ -21,6 +25,9 @@ import com.whyble.farm.seed.domain.User;
 import com.whyble.farm.seed.user.signup.SignupActivity;
 import com.whyble.farm.seed.util.TextManager.TextManager;
 import com.whyble.farm.seed.util.ValidationUtil;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends BaseActivity<LoginActivity> implements LoginIn.View{
 
@@ -39,6 +46,19 @@ public class LoginActivity extends BaseActivity<LoginActivity> implements LoginI
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         presenter = new LoginPresenter(this);
         presenter.loadData(LoginActivity.this);
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo("com.whyble.farm.seed", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         String id = sharedPrefManager.getStringExtra(TextManager.VALID_USER);
         if(!id.matches("")){
@@ -117,6 +137,4 @@ public class LoginActivity extends BaseActivity<LoginActivity> implements LoginI
         sharedPrefManager.putStringExtra(TextManager.VALID_USER,  binding.getDomain().getId());
         sharedPrefManager.putStringExtra(TextManager.PASSWD,  binding.getDomain().getPasswd());
     }
-
-
 }

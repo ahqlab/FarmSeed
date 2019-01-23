@@ -18,6 +18,7 @@ import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
 import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
 import com.whyble.farm.seed.view.sub.applyingForMerchant.ApplyingForMerchantActivity;
 import com.whyble.farm.seed.view.sub.findMerchants.FindMerchantsActivity;
+import com.whyble.farm.seed.view.sub.findMerchants.MapViewDemoActivity;
 import com.whyble.farm.seed.view.sub.giftHistory.GiftSeedHistoryActivity;
 import com.whyble.farm.seed.view.sub.giftSeed.GifiSeedActivity;
 import com.whyble.farm.seed.view.sub.merchantUseHistory.MerchantUseHistoryActivity;

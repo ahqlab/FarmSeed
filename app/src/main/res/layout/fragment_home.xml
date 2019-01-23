@@ -42,7 +42,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:textSize="16sp"
-                        android:text="ITPANGPANG marquee 공부하는 중입니다~"
+                        android:text=""
                         android:ellipsize="marquee"
                         android:marqueeRepeatLimit="marquee_forever"
                         android:singleLine="true"
@@ -51,15 +51,20 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/black">
 
                         <VideoView
                             android:id="@+id/videoView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="210dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginRight="0dp"
                             android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            android:layout_height="200dp"/>
-
+                            android:background="#0000"
+                            android:scaleType="fitXY" />
                             <TextView
                                 android:id="@+id/message"
                                 android:layout_width="wrap_content"

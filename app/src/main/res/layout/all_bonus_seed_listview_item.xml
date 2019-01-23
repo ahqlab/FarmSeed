@@ -64,7 +64,7 @@
                         android:textColor="@color/seed_color"
                         android:textStyle="bold"
                         android:layout_marginRight="8dp"
-                        android:text="@={domain.bouns_point}" />
+                        android:text="@={domain.bonus_point}" />
 
                     <TextView
                         android:layout_width="wrap_content"

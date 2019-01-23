@@ -299,8 +299,7 @@ public class HomeFragment extends Fragment {
     public void setMainMessage(List<Message> message) {
         StringBuffer sb = new StringBuffer();
         for (Message ms: message) {
-            if(ms.getTitle()
-                    != null){
+            if(ms.getTitle() != null){
                 sb.append(ms.getTitle());
             }
         }
