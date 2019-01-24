@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity<LoginActivity> implements LoginI
         presenter.loadData(LoginActivity.this);
 
         try {
-            PackageInfo info = getPackageManager().getPackageInfo("com.whyble.farm.seed", PackageManager.GET_SIGNATURES);
+            PackageInfo info = getPackageManager().getPackageInfo("com.whyble.bio.block", PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());

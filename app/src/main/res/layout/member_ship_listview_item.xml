@@ -15,8 +15,6 @@
             type="com.whyble.farm.seed.view.sub.findMerchants.FindMerchantsActivity.MemberShip" />
 
     </data>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,16 +32,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:orientation="horizontal">
+                android:paddingBottom="16dp">
 
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/curcle_blue"/>
+                    android:src="@drawable/curcle_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,32 +51,27 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
-
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:text="@={domain.m_category}"
                         android:textColor="@color/black"
-                        android:text="@={domain.m_category}"  />
-
+                        android:textStyle="bold" />
                 </LinearLayout>
-
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     android:text="0" />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </layout>
 
 

@@ -249,6 +249,41 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
         setAutoPhoneNumber();
     }
 
+    @Override
+    public void setSecessionResult(String s) {
+        if (s != null) {
+            Gson gson = new Gson();
+            ServerResponse response = gson.fromJson(s, ServerResponse.class);
+            if (response.getResult().matches("0")) {
+                super.showBasicOneBtnPopup(null, response.getMsg())
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        }).show();
+            } else {
+                super.showBasicOneBtnPopup(null, response.getMsg())
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        } else {
+            super.showBasicOneBtnPopup(null,
+                    "error")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }
+    }
+
     public void onClickSignupBtnClick(View view) {
         Log.e("HJLEE", binding.getDomain().toString());
         if (ValidationUtil.isEmptyOfEditText(binding.name)) {
@@ -402,31 +437,52 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        if(id == R.id.draw_save_seed){
+        if (id == R.id.draw_save_seed) {
             Intent intent = new Intent(getApplicationContext(), SaveSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_farm_seed){
+        } else if (id == R.id.draw_farm_seed) {
             Intent intent = new Intent(getApplicationContext(), FarmSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_harvest_history){
+        } else if (id == R.id.draw_harvest_history) {
             Intent intent = new Intent(getApplicationContext(), MySeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_bonus_seed){
+        } else if (id == R.id.draw_bonus_seed) {
             Intent intent = new Intent(getApplicationContext(), BonusSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.logout){
+        } else if (id == R.id.logout) {
             mSharedPrefManager.removeAllPreferences();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
-            ((MainActivity)MainActivity.mContext).finish();
+            ((MainActivity) MainActivity.mContext).finish();
             finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void ocClickMemberSecession(View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(UpdateActivity.this);
+        alert.setTitle("회원탈퇴를 진행 하시겠습니까?");
+        alert.setPositiveButton("예", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.memberSecession();
+                dialog.dismiss();
+            }
+        });
+        alert.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }

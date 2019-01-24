@@ -75,4 +75,19 @@ public class UpdatePresenter implements UpdateIn.Presenter{
             }
         });
     }
+
+    @Override
+    public void memberSecession() {
+        model.memberSecession(new CommonModel.DomainCallBackListner<String>() {
+            @Override
+            public void doPostExecute(String s) {
+                view.setSecessionResult(s);
+            }
+
+            @Override
+            public void doPreExecute() {
+
+            }
+        });
+    }
 }

@@ -65,13 +65,13 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/visual"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/farm_visual2" />
+                    <!-- <ImageView
+                         android:id="@+id/visual"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:adjustViewBounds="true"
+                         android:scaleType="fitCenter"
+                         android:src="@drawable/farm_visual2" />-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -163,11 +163,13 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="40dp"
+                            android:orientation="horizontal"
+                            android:paddingBottom="4dp">
 
                             <ImageView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginRight="8dp"
@@ -177,7 +179,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/find_friend_id_guide_text1"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -185,14 +188,16 @@
                                 android:layout_marginLeft="4dp"
                                 android:text="@string/find_friend_id_guide_text2"
                                 android:textColor="@color/deep_red_text"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
                                 android:text="@string/find_friend_id_guide_text3"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -234,7 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="16dp"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
@@ -249,6 +254,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="@string/enter_the_friend_id_again" />
                     </LinearLayout>
 
@@ -270,17 +276,18 @@
                             android:textSize="17sp"
                             android:textStyle="bold" />
 
-
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="40dp"
+                        android:orientation="horizontal"
+                        android:paddingBottom="4dp">
 
                         <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
@@ -290,7 +297,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/gift_my_seed_guide_text1"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/currentMySeed"
@@ -299,20 +307,23 @@
                             android:layout_marginLeft="4dp"
                             android:text="0 Seed"
                             android:textColor="@color/deep_red_text"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:text="@string/gift_my_seed_guide_text2"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="80dp"
                         android:orientation="horizontal">
 
                         <EditText
@@ -344,13 +355,13 @@
         </RelativeLayout>
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_sub_main_drawer" />
+              android:id="@+id/nav_view"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_gravity="start"
+              android:fitsSystemWindows="true"
+              app:headerLayout="@layout/nav_header_main"
+              app:menu="@menu/activity_sub_main_drawer" />
 
     </android.support.v4.widget.DrawerLayout>
 </layout>

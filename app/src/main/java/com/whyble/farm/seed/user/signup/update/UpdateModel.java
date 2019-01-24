@@ -56,4 +56,21 @@ public class UpdateModel extends CommonModel {
             }
         }.execute(nameValuePairs);
     }
+
+    public void memberSecession(final DomainCallBackListner<String> domainCallBackListner) {
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("valid_user", "daskjdhkasd"));
+        new AbstractOldAsyncTask("member_del.php"){
+
+            @Override
+            protected void doPostExecute(String d) {
+                domainCallBackListner.doPostExecute(d);
+            }
+
+            @Override
+            protected void doPreExecute() {
+
+            }
+        }.execute(nameValuePairs);
+    }
 }

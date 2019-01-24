@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.whyble.farm.seed"
+        applicationId "com.whyble.bio.block"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -25,7 +25,6 @@ android {
         abi {
             enable true
             reset()
-            include 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
             universalApk false
         }
     }

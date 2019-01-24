@@ -16,632 +16,655 @@
 
     </data>
 
-    <RelativeLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        tools:context=".view.sub.applyingForMerchant.ApplyingForMerchantActivity">
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/common_toolbar" />
-
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/my_toolbar">
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:context=".view.sub.applyingForMerchant.ApplyingForMerchantActivity">
 
-            <LinearLayout
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/common_toolbar" />
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_below="@+id/my_toolbar">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/visual"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/store_visual2" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/visual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/store_visual2" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    </LinearLayout>
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:src="@drawable/dote_bar" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:src="@drawable/dote_bar" />
+                    </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginLeft="16dp"
+                            android:src="@drawable/f_icon4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/bioblock_signup"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:src="@drawable/f_icon4"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/bioblock_signup"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/biobloc_id"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/valid_user"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.valid_user}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/business_or_intercontinental"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_comname"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_comname}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sectors"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_category"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_category}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/owner_name"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_name}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/business_number"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:inputType="number"
-                        android:text="@={domain.m_number}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/address"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_addr1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:focusable="false"
-                        android:text="@={domain.m_addr1}"
-                        android:background="@drawable/common_edit_text" />
-                    <Button
-                        android:layout_width="110dp"
-                        android:paddingRight="16dp"
-                        android:paddingLeft="16dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="@string/search_address"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="12dp"
-                        android:onClick="@{activity::onClickZipcodeBtnClick}"
-                        android:background="@drawable/common_blue_btn" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상세주소"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_addr2"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_addr2}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="나머지주소"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_addr3"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_addr3}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tel"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_tel"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_tel}"
-                        android:inputType="number"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_email}"
-                        android:inputType="textEmailAddress"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bank"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_bankname"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:focusable="false"
-                        android:text="@={domain.m_bankname}"
-                        android:onClick="@{activity::onClickBankname}"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/under_line_rect"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bank_number"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                    <EditText
-                        android:id="@+id/m_banknum"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="8dp"
-                        android:padding="4dp"
-                        android:textSize="12sp"
-                        android:maxLines="1"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:text="@={domain.m_banknum}"
-                        android:inputType="number"
-                        android:background="@drawable/common_edit_text" />
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:src="@drawable/icon10" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/business_or_service_desc"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="8dp"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/m_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="40dp"
-                        android:layout_marginTop="8dp"
-                        android:lines="8"
-                        android:maxLines="10"
-                        android:minLines="6"
-                        android:gravity="top|left"
-                        android:textSize="13dp"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="8dp"
-                        android:background="@drawable/common_edit_text"
-                        android:scrollbars="vertical" />
-                    <Button
-                        android:id="@+id/submit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/common_blue_btn"
                         android:layout_marginTop="16dp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:onClick="@{activity::onClickSubmit}"
-                        android:text="@string/apply"/>
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
 
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/biobloc_id"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/valid_user"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.valid_user}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/business_or_intercontinental"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_comname"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_comname}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/sectors"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_category}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/owner_name"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_name}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/business_number"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_number}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/address"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_addr1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/common_edit_text"
+                            android:focusable="false"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_addr1}"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:layout_width="110dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_blue_btn"
+                            android:onClick="@{activity::onClickZipcodeBtnClick}"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:text="@string/search_address"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="상세주소"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_addr2"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_addr2}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="나머지주소"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_addr3"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_addr3}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/tel"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_tel"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_tel}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/email"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_email}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/bank"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_bankname"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:focusable="false"
+                            android:imeOptions="actionNext"
+                            android:maxLines="1"
+                            android:onClick="@{activity::onClickBankname}"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_bankname}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/under_line_rect"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/bank_number"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/m_banknum"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/common_edit_text"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:text="@={domain.m_banknum}"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/icon10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/business_or_service_desc"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/m_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="40dp"
+                            android:background="@drawable/common_edit_text"
+                            android:gravity="top|left"
+                            android:inputType="textMultiLine"
+                            android:lines="8"
+                            android:maxLines="10"
+                            android:minLines="6"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="8dp"
+                            android:scrollbars="vertical"
+                            android:textSize="13dp" />
+
+                        <Button
+                            android:id="@+id/submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/common_blue_btn"
+                            android:onClick="@{activity::onClickSubmit}"
+                            android:text="@string/apply"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
 
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_sub_main_drawer" />
 
-            </LinearLayout>
-
-
-        </ScrollView>
-
-    </RelativeLayout>
-
+    </android.support.v4.widget.DrawerLayout>
 </layout>

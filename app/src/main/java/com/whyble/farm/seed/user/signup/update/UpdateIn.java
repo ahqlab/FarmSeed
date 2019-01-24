@@ -13,6 +13,8 @@ public interface UpdateIn {
         void findRecommendResult(String s);
 
         void setUserInfo(String s);
+
+        void setSecessionResult(String s);
     }
 
     interface Presenter{
@@ -25,5 +27,6 @@ public interface UpdateIn {
 
         void getUserInfo();
 
+        void memberSecession();
     }
 }

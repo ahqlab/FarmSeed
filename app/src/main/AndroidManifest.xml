@@ -21,6 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
@@ -29,11 +30,11 @@
             android:value="AIzaSyA55VHiduzK7x3noqovYgi7YKKa53xyTrM" />
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="56cd248623a6215cef9ee05a30357d21" />
+            android:value="86a3e5cb2b0ccd3db9c4e573a36b62ef" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.whyble.farm.seed"
+            android:authorities="com.whyble.bio.block"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

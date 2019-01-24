@@ -2,13 +2,21 @@ package com.whyble.farm.seed.view.sub.findMerchants;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.whyble.farm.seed.MainActivity;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.adapter.AbsractCommonAdapter;
 import com.whyble.farm.seed.common.base.BaseActivity;
@@ -26,8 +35,12 @@ import com.whyble.farm.seed.databinding.AllBonusSeedListviewItemBinding;
 import com.whyble.farm.seed.databinding.MemberShipListviewItemBinding;
 import com.whyble.farm.seed.domain.Domain;
 import com.whyble.farm.seed.domain.seeds.bonus.all.Bonus;
+import com.whyble.farm.seed.user.signup.login.LoginActivity;
 import com.whyble.farm.seed.util.ValidationUtil;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
+import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
+import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
+import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
@@ -40,7 +53,7 @@ import java.util.List;
 
 import lombok.Data;
 
-public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> implements MapView.MapViewEventListener, MapView.POIItemEventListener, FindMerchantsIn.View {
+public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> implements MapView.MapViewEventListener, MapView.POIItemEventListener, FindMerchantsIn.View, NavigationView.OnNavigationItemSelectedListener {
 
     ActivityFindMerchantsBinding binding;
 
@@ -58,9 +71,9 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
 
     @Override
     public void searchResult(String s) {
-        if (s != null) {
-            Gson gson = new Gson();
-            SearchResult result = gson.fromJson(s, SearchResult.class);
+        Gson gson = new Gson();
+        SearchResult result = gson.fromJson(s, SearchResult.class);
+        if (result.getX() != null) {
             point = MapPoint.mapPointWithGeoCoord(Float.parseFloat(result.y), Float.parseFloat(result.x));
             mMapView.removeAllPOIItems();
             mMapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter(result));
@@ -118,6 +131,37 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
         binding.listview.setAdapter(memnberShipAdapter);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.draw_save_seed) {
+            Intent intent = new Intent(getApplicationContext(), SaveSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_farm_seed) {
+            Intent intent = new Intent(getApplicationContext(), FarmSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_harvest_history) {
+            Intent intent = new Intent(getApplicationContext(), MySeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.draw_bonus_seed) {
+            Intent intent = new Intent(getApplicationContext(), BonusSeedActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.logout) {
+            mSharedPrefManager.removeAllPreferences();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            ((MainActivity) MainActivity.mContext).finish();
+            finish();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 
     class CustomCalloutBalloonAdapter implements CalloutBalloonAdapter {
         private final View mCalloutBalloon;
@@ -144,7 +188,7 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     }
 
     @Data
-    public class SearchResult implements Serializable{
+    public class SearchResult implements Serializable {
         private String x;
         private String y;
         private String m_comname;
@@ -152,7 +196,7 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     }
 
     @Data
-    public class MemberShipList implements Serializable{
+    public class MemberShipList implements Serializable {
         List<MemberShip> membership_list;
     }
 
@@ -175,10 +219,30 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         mMapView = (MapView) findViewById(R.id.map_view);
-        mMapView.setDaumMapApiKey("56cd248623a6215cef9ee05a30357d21");
+        mMapView.setDaumMapApiKey("86a3e5cb2b0ccd3db9c4e573a36b62ef");
         mMapView.setMapViewEventListener(this);
         mMapView.setPOIItemEventListener(this);
         mMapView.setZoomLevel(2, true);
+
+        binding.toolbar.qrcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
+            }
+        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivityClass(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
 

@@ -102,14 +102,44 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_margin="20dp"
                             android:layout_centerInParent="true"
                             android:onClick="@{activity::onClickCameraIcon}"
-                            android:src="@drawable/add_pet_top_camera__190_190"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/info_user"/>
+
+                        <!-- -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:text="@={domain.id}"
+                                android:textStyle="bold"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:text="@={domain.email}"
+                                android:layout_marginBottom="8dp"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
 
                     </RelativeLayout>
 
@@ -153,12 +183,12 @@
                             android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:paddingLeft="8dp"
-                            android:text="@={domain.id}"
+                            android:text="@={domain.name}"
                             android:textSize="15sp" />
 
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="20dp"
+                            android:layout_width="12dp"
+                            android:layout_height="16dp"
                             android:layout_gravity="center_vertical"
                             android:gravity="center_vertical"
                             android:src="@drawable/right" />
@@ -329,7 +359,7 @@
                         android:orientation="vertical"
                         android:paddingBottom="16dp">
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/under_line_rect"
@@ -354,14 +384,14 @@
                                 android:textSize="15sp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="20dp"
+                                android:layout_width="12dp"
+                                android:layout_height="16dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:onClick="@{activity::onClickShipment}"
                                 android:src="@drawable/right" />
 
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -398,8 +428,8 @@
                                     android:text="한국어" />
 
                                 <ImageView
-                                    android:layout_width="15dp"
-                                    android:layout_height="20dp"
+                                    android:layout_width="12dp"
+                                    android:layout_height="16dp"
                                     android:src="@drawable/right" />
 
                             </LinearLayout>
@@ -430,8 +460,8 @@
                                 android:textSize="15sp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="20dp"
+                                android:layout_width="12dp"
+                                android:layout_height="16dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:onClick="@{activity::onClickNotice}"
@@ -464,8 +494,8 @@
                                 android:textSize="15sp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="20dp"
+                                android:layout_width="12dp"
+                                android:layout_height="16dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:onClick="@{activity::onClickBoard}"
@@ -496,8 +526,8 @@
                                 android:textSize="15sp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="20dp"
+                                android:layout_width="12dp"
+                                android:layout_height="16dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center_vertical"
                                 android:onClick="@{activity::onClickEditUserInfo}"

@@ -184,6 +184,7 @@ public class SaveSeedActivity extends BaseActivity<SaveSeedActivity> implements 
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            binding.order.setText("");
                             dialog.dismiss();
                         }
                     }).show();
