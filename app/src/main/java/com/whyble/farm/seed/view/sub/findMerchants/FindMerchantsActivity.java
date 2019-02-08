@@ -37,10 +37,13 @@ import com.whyble.farm.seed.domain.Domain;
 import com.whyble.farm.seed.domain.seeds.bonus.all.Bonus;
 import com.whyble.farm.seed.user.signup.login.LoginActivity;
 import com.whyble.farm.seed.util.ValidationUtil;
+import com.whyble.farm.seed.util.ViewUtil;
 import com.whyble.farm.seed.view.seed.list.bonus.BonusSeedActivity;
 import com.whyble.farm.seed.view.seed.list.farm.FarmSeedActivity;
 import com.whyble.farm.seed.view.seed.list.my.MySeedActivity;
 import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
+import com.whyble.farm.seed.view.sub.chainService.ChainServiceActivity;
+import com.whyble.farm.seed.view.sub.chainService.ChainServiceIn;
 
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
@@ -102,7 +105,6 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     }
 
     private void setListview(List<MemberShip> list) {
-
         binding.listCount.setText(String.valueOf(list.size()));
         memnberShipAdapter = new AbsractCommonAdapter<MemberShip>(FindMerchantsActivity.this, list) {
 
@@ -129,6 +131,7 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
             }
         };
         binding.listview.setAdapter(memnberShipAdapter);
+        ViewUtil.setListViewHeightBasedOnChildren(binding.listview);
     }
 
     @Override
@@ -204,6 +207,7 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     public class MemberShip implements Serializable {
         private String m_comname;
         private String m_category;
+        private String m_tel;
     }
 
     @SuppressLint("WrongViewCast")
@@ -352,5 +356,11 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     protected void onResume() {
         presenter.getChainList();
         super.onResume();
+    }
+
+    public void onClickMerchantsMore(View view){
+        Intent intent = new Intent(getApplicationContext(), ChainServiceActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

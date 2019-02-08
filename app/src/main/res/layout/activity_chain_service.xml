@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.whyble.farm.seed.view.sub.chainService.ChainServiceActivity" />
+    </data>
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:context=".view.seed.list.bonus.BonusSeedActivity">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/common_toolbar" />
+
+            <LinearLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:orientation="vertical"
+                tools:ignore="NotSibling">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/title_bg"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="8dp"
+                        android:onClick="@{activity::onClickBackBtn}"
+                        android:src="@drawable/left_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:text="@string/chain_service"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/icon15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/chain_serivce_title"
+                        android:textColor="@color/second_title_text_color"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                   <!-- <TextView
+                        android:id="@+id/total_seed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center_vertical"
+                        android:text="전체 Seed : 0"
+                        android:textColor="@color/green_text" />-->
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/top">
+
+                <ListView
+                    android:id="@+id/seed_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_sub_main_drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</layout>

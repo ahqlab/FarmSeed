@@ -143,8 +143,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon1" />
 
@@ -169,8 +169,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon2" />
 
@@ -195,8 +195,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon3" />
 
@@ -229,8 +229,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon4" />
 
@@ -255,8 +255,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon5" />
 
@@ -281,8 +281,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon6" />
 
@@ -315,8 +315,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon7" />
 
@@ -341,8 +341,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon8" />
 
@@ -367,8 +367,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:adjustViewBounds="true"
                             android:src="@drawable/farm_icon9" />
 
