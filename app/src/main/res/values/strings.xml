@@ -113,6 +113,8 @@
     <string name="toast_text_clipboard_adress">복사 성공</string>
     <string name="board">공지사항</string>
     <string name="close">닫기</string>
+    <string name="chain_service">Chain Service</string>
+    <string name="chain_serivce_title">가맹점 전체내역</string>
 
 
 </resources>
