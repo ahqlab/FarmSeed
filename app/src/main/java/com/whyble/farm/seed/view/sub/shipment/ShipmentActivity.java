@@ -40,7 +40,7 @@ import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
 
 import java.util.List;
 
-public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements ShipmentIn.View ,  NavigationView.OnNavigationItemSelectedListener{
+public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements ShipmentIn.View, NavigationView.OnNavigationItemSelectedListener {
 
     ActivityShipmentBinding binding;
 
@@ -90,7 +90,7 @@ public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements 
     }
 
 
-    public void onClickBackBtn(View view){
+    public void onClickBackBtn(View view) {
         finish();
     }
 
@@ -98,7 +98,7 @@ public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements 
     public void getSeedResult(String s) {
         Gson gson = new Gson();
         ShipmentList response = gson.fromJson(s, ShipmentList.class);
-        if(response.getCash_list() != null){
+        if (response.getCash_list() != null) {
             setSaveSeedList(response.getCash_list());
             setTotalSeed(response.getCash());
         }
@@ -109,57 +109,61 @@ public class ShipmentActivity extends BaseActivity<ShipmentActivity> implements 
     }
 
     public void setSaveSeedList(List<Shipment> list) {
-        farmSeedAdapter = new AbsractCommonAdapter<Shipment>(ShipmentActivity.this, list) {
+        if (list != null) {
 
-            AllShipmentSeedListviewItemBinding adapterBinding;
 
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = farmSeedAdapter.inflater.inflate(R.layout.all_shipment_seed_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain(farmSeedAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (AllShipmentSeedListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain(farmSeedAdapter.data.get(position));
-                }
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
+            farmSeedAdapter = new AbsractCommonAdapter<Shipment>(ShipmentActivity.this, list) {
+
+                AllShipmentSeedListviewItemBinding adapterBinding;
+
+                @Override
+                protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = farmSeedAdapter.inflater.inflate(R.layout.all_shipment_seed_listview_item, null);
+                        adapterBinding = DataBindingUtil.bind(convertView);
+                        adapterBinding.setDomain(farmSeedAdapter.data.get(position));
+                        convertView.setTag(adapterBinding);
+                    } else {
+                        adapterBinding = (AllShipmentSeedListviewItemBinding) convertView.getTag();
+                        adapterBinding.setDomain(farmSeedAdapter.data.get(position));
                     }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.seedListview.setAdapter(farmSeedAdapter);
+                    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            return false;
+                        }
+                    });
+                    return adapterBinding.getRoot();
+                }
+            };
+            binding.seedListview.setAdapter(farmSeedAdapter);
+        }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        if(id == R.id.draw_save_seed){
+        if (id == R.id.draw_save_seed) {
             Intent intent = new Intent(getApplicationContext(), SaveSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_farm_seed){
+        } else if (id == R.id.draw_farm_seed) {
             Intent intent = new Intent(getApplicationContext(), FarmSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_harvest_history){
+        } else if (id == R.id.draw_harvest_history) {
             Intent intent = new Intent(getApplicationContext(), MySeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_bonus_seed){
+        } else if (id == R.id.draw_bonus_seed) {
             Intent intent = new Intent(getApplicationContext(), BonusSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.logout){
+        } else if (id == R.id.logout) {
             mSharedPrefManager.removeAllPreferences();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
-            ((MainActivity)MainActivity.mContext).finish();
+            ((MainActivity) MainActivity.mContext).finish();
             finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

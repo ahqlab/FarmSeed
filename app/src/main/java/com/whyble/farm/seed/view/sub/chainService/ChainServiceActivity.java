@@ -128,30 +128,32 @@ public class ChainServiceActivity extends BaseActivity<ChainServiceActivity> imp
 
     private void setListview(List<FindMerchantsActivity.MemberShip> list) {
 
-        memnberShipAdapter = new AbsractCommonAdapter<FindMerchantsActivity.MemberShip>(ChainServiceActivity.this, list) {
+        if(list != null){
+            memnberShipAdapter = new AbsractCommonAdapter<FindMerchantsActivity.MemberShip>(ChainServiceActivity.this, list) {
 
-            MemberShipListviewItemBinding adapterBinding;
+                MemberShipListviewItemBinding adapterBinding;
 
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = memnberShipAdapter.inflater.inflate(R.layout.member_ship_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (MemberShipListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
-                }
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
+                @Override
+                protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = memnberShipAdapter.inflater.inflate(R.layout.member_ship_listview_item, null);
+                        adapterBinding = DataBindingUtil.bind(convertView);
+                        adapterBinding.setDomain(memnberShipAdapter.data.get(position));
+                        convertView.setTag(adapterBinding);
+                    } else {
+                        adapterBinding = (MemberShipListviewItemBinding) convertView.getTag();
+                        adapterBinding.setDomain(memnberShipAdapter.data.get(position));
                     }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.seedListview.setAdapter(memnberShipAdapter);
+                    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            return false;
+                        }
+                    });
+                    return adapterBinding.getRoot();
+                }
+            };
+            binding.seedListview.setAdapter(memnberShipAdapter);
+        }
     }
 }

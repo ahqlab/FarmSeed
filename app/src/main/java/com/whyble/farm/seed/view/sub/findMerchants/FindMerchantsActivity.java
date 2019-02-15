@@ -105,33 +105,36 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
     }
 
     private void setListview(List<MemberShip> list) {
-        binding.listCount.setText(String.valueOf(list.size()));
-        memnberShipAdapter = new AbsractCommonAdapter<MemberShip>(FindMerchantsActivity.this, list) {
+        if (list != null) {
+            binding.listCount.setText(String.valueOf(list.size()));
+            memnberShipAdapter = new AbsractCommonAdapter<MemberShip>(FindMerchantsActivity.this, list) {
 
-            MemberShipListviewItemBinding adapterBinding;
+                MemberShipListviewItemBinding adapterBinding;
 
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = memnberShipAdapter.inflater.inflate(R.layout.member_ship_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (MemberShipListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain(memnberShipAdapter.data.get(position));
-                }
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
+                @Override
+                protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = memnberShipAdapter.inflater.inflate(R.layout.member_ship_listview_item, null);
+                        adapterBinding = DataBindingUtil.bind(convertView);
+                        adapterBinding.setDomain(memnberShipAdapter.data.get(position));
+                        convertView.setTag(adapterBinding);
+                    } else {
+                        adapterBinding = (MemberShipListviewItemBinding) convertView.getTag();
+                        adapterBinding.setDomain(memnberShipAdapter.data.get(position));
                     }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.listview.setAdapter(memnberShipAdapter);
-        ViewUtil.setListViewHeightBasedOnChildren(binding.listview);
+                    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            return false;
+                        }
+                    });
+                    return adapterBinding.getRoot();
+                }
+            };
+            binding.listview.setAdapter(memnberShipAdapter);
+            ViewUtil.setListViewHeightBasedOnChildren(binding.listview);
+        }
+
     }
 
     @Override
@@ -358,7 +361,7 @@ public class FindMerchantsActivity extends BaseActivity<FindMerchantsActivity> i
         super.onResume();
     }
 
-    public void onClickMerchantsMore(View view){
+    public void onClickMerchantsMore(View view) {
         Intent intent = new Intent(getApplicationContext(), ChainServiceActivity.class);
         startActivity(intent);
         finish();

@@ -101,32 +101,33 @@ public class GiftSeedHistoryActivity extends BaseActivity<GiftSeedHistoryActivit
     }
 
     private void setSaveSeedList(List<Gift> list) {
-        giftAdapter = new AbsractCommonAdapter<Gift>(GiftSeedHistoryActivity.this, list) {
+        if(list != null){
+            giftAdapter = new AbsractCommonAdapter<Gift>(GiftSeedHistoryActivity.this, list) {
 
-            GiftSeedListviewItemBinding adapterBinding;
+                GiftSeedListviewItemBinding adapterBinding;
 
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = giftAdapter.inflater.inflate(R.layout.gift_seed_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain(giftAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (GiftSeedListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain(giftAdapter.data.get(position));
-                }
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
+                @Override
+                protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = giftAdapter.inflater.inflate(R.layout.gift_seed_listview_item, null);
+                        adapterBinding = DataBindingUtil.bind(convertView);
+                        adapterBinding.setDomain(giftAdapter.data.get(position));
+                        convertView.setTag(adapterBinding);
+                    } else {
+                        adapterBinding = (GiftSeedListviewItemBinding) convertView.getTag();
+                        adapterBinding.setDomain(giftAdapter.data.get(position));
                     }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.seedListview.setAdapter(giftAdapter);
-
+                    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            return false;
+                        }
+                    });
+                    return adapterBinding.getRoot();
+                }
+            };
+            binding.seedListview.setAdapter(giftAdapter);
+        }
     }
 
     private void setTotalSeed(TotalGift totalGift) {

@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         binding.boardText.setSelected(true);
         binding.boardText.setHorizontallyScrolling(true);
         startVideo();
-        binding.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
+        binding.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void startVideo(){
+    public void startVideo() {
         String uriPath = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.video;
         Uri uri = Uri.parse(uriPath);
         binding.videoView.setVideoURI(uri);
@@ -119,10 +119,12 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(getActivity(), BonusSeedActivity.class);
         startActivity(intent);
     }
+
     public void onClickInco1(View view) {
         Intent intent = new Intent(getActivity(), SaveSeedActivity.class);
         startActivity(intent);
     }
+
     public void onClickInco2(View view) {
         Intent intent = new Intent(getActivity(), InviteFriendActivity.class);
         startActivity(intent);
@@ -285,25 +287,30 @@ public class HomeFragment extends Fragment {
     }
 
     public void setBoardContent(List<Notice> notice) {
+        if (notice != null) {
 
-        StringBuffer sb = new StringBuffer();
-        for (Notice noti: notice) {
-            sb.append(noti.getTitle());
-            sb.append("                                ");
-            sb.append("                                ");
+            StringBuffer sb = new StringBuffer();
+            for (Notice noti : notice) {
+                sb.append(noti.getTitle());
+                sb.append("                                ");
+                sb.append("                                ");
+            }
+            binding.boardText.setText(sb.toString());
+            binding.boardText.setSelected(true);
         }
-        binding.boardText.setText(sb.toString());
-        binding.boardText.setSelected(true);
 
     }
 
     public void setMainMessage(List<Message> message) {
-        StringBuffer sb = new StringBuffer();
-        for (Message ms: message) {
-            if(ms.getTitle() != null){
-                sb.append(ms.getTitle());
+        if(message != null){
+            StringBuffer sb = new StringBuffer();
+            for (Message ms : message) {
+                if (ms.getTitle() != null) {
+                    sb.append(ms.getTitle());
+                }
             }
+            binding.message.setText(sb.toString());
         }
-        binding.message.setText(sb.toString());
+
     }
 }

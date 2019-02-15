@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.shagi.materialdatepicker.date.DatePickerFragmentDialog;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.base.BaseActivity;
 import com.whyble.farm.seed.databinding.ActivitySignupBinding;
@@ -42,6 +43,10 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     SignupIn.Presenter presenter;
 
     private DatePickerDialog picker;
+
+    DatePickerFragmentDialog dialog;
+
+    private static final String TAG = DatePickerFragmentDialog.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +99,8 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
                             Toast.makeText(getApplicationContext(), getString(R.string.required_permission_message), Toast.LENGTH_SHORT).show();
                         }
                     }
-                } case CAMERA_PERMISSION_CODE:
+                }
+            case CAMERA_PERMISSION_CODE:
                 for (int i = 0; i < permissions.length; i++) {
                     String permission = permissions[i];
                     int grantResult = grantResults[i];
@@ -376,7 +382,29 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
     }
 
     public void onClickBirthday(View view) {
+
         final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        DatePickerFragmentDialog.newInstance(new DatePickerFragmentDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePickerFragmentDialog view, int year, int monthOfYear, int dayOfMonth) {
+                binding.getDomain().setBirthday(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                binding.birthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+            }
+        }, year, month, day).show(getSupportFragmentManager(), "DatePickerFragmentDialog");
+
+      /*  final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+
+        dialog = new DatePickerFragmentDialog();
+        dialog.show(getSupportFragmentManager(), "asd");*/
+
+
+       /* final Calendar cldr = Calendar.getInstance();
         int day = cldr.get(Calendar.DAY_OF_MONTH);
         int month = cldr.get(Calendar.MONTH);
         int year = cldr.get(Calendar.YEAR);
@@ -391,10 +419,10 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
 //                        binding.getDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                     }
                 }, year, month, day);
-        picker.show();
+        picker.show();*/
     }
 
-    public void onClickQrCode(View view){
+    public void onClickQrCode(View view) {
         int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
         if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivityClass(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
@@ -408,10 +436,6 @@ public class SignupActivity extends BaseActivity<SignupActivity> implements Sign
             integrator.initiateScan();
         }
     }
-
-
-
-
 
 
 }
