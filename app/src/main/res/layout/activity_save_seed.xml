@@ -157,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:text="입니다. 10.000 단위로 입력하세요."
+                        android:text="입니다."
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -198,14 +198,15 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <android.support.design.widget.NavigationView
+       <!-- <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            android:background="#E9F3F5"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_sub_main_drawer" />
+            app:menu="@menu/activity_sub_main_drawer" />-->
 
     </android.support.v4.widget.DrawerLayout>
 </layout>

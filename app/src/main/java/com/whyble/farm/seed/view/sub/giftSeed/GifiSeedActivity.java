@@ -160,6 +160,14 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
                             dialog.dismiss();
                         }
                     }).show();
+        } else if(ValidationUtil.isEmptyOfEditText(binding.searchId)){
+            super.showBasicOneBtnPopup(null, getString(R.string.not_found_friend_result))
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
         } else {
             presenter.sendGiftSeed(binding.findUser.getText().toString(), binding.seed.getText().toString());
         }
@@ -192,11 +200,9 @@ public class GifiSeedActivity extends BaseActivity<GifiSeedActivity> implements 
 
     @Override
     public void setCurrentMySeed(String s) {
-        Log.e("HJLEE", "s : " + s);
         if(s != null){
             Gson gson = new Gson();
             Cash cash = gson.fromJson(s, Cash.class);
-            Log.e("HJLEE", "Cash : " + cash);
             if(cash.getCash().getCash() != null){
                 binding.currentMySeed.setText(MathUtil.stringToMoneyType(cash.getCash().getCash()) + "Seed");
             }

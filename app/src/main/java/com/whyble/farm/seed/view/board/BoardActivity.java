@@ -34,7 +34,7 @@ import com.whyble.farm.seed.view.seed.list.save.SaveSeedActivity;
 
 import java.util.List;
 
-public class BoardActivity extends BaseActivity<BoardActivity> implements BoardIn.View,  NavigationView.OnNavigationItemSelectedListener{
+public class BoardActivity extends BaseActivity<BoardActivity> implements BoardIn.View, NavigationView.OnNavigationItemSelectedListener {
 
     public static Context mContext;
 
@@ -89,79 +89,83 @@ public class BoardActivity extends BaseActivity<BoardActivity> implements BoardI
     public void setBoards(String s) {
         Gson gson = new Gson();
         NoticeList response = gson.fromJson(s, NoticeList.class);
-        if(response.getNotice() != null){
+        if (response.getNotice() != null) {
             setNoticeList(response.getNotice());
         }
     }
 
-    public void onClickBackBtn(View view){
+    public void onClickBackBtn(View view) {
         finish();
     }
 
     private void setNoticeList(List<Notice> list) {
-        boardSeedAdapter = new AbsractCommonAdapter<Notice>(BoardActivity.this, list) {
+        if (list != null) {
 
-            BoardListviewItemBinding adapterBinding;
 
-            @Override
-            protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = boardSeedAdapter.inflater.inflate(R.layout.board_listview_item, null);
-                    adapterBinding = DataBindingUtil.bind(convertView);
-                    adapterBinding.setDomain(boardSeedAdapter.data.get(position));
-                    convertView.setTag(adapterBinding);
-                } else {
-                    adapterBinding = (BoardListviewItemBinding) convertView.getTag();
-                    adapterBinding.setDomain(boardSeedAdapter.data.get(position));
+            boardSeedAdapter = new AbsractCommonAdapter<Notice>(BoardActivity.this, list) {
+
+                BoardListviewItemBinding adapterBinding;
+
+                @Override
+                protected View getUserEditView(final int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = boardSeedAdapter.inflater.inflate(R.layout.board_listview_item, null);
+                        adapterBinding = DataBindingUtil.bind(convertView);
+                        adapterBinding.setDomain(boardSeedAdapter.data.get(position));
+                        convertView.setTag(adapterBinding);
+                    } else {
+                        adapterBinding = (BoardListviewItemBinding) convertView.getTag();
+                        adapterBinding.setDomain(boardSeedAdapter.data.get(position));
+                    }
+
+                    Log.e("HJLEE", ">>>" + adapterBinding.getDomain().getTitle().length());
+                    convertView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BoardActivity.super.showToast(adapterBinding.getDomain().getNo());
+                            Intent intent = new Intent(getApplicationContext(), BoardDetailActivity.class);
+                            intent.putExtra("No", adapterBinding.getDomain().getNo());
+                            startActivity(intent);
+                            //finish();
+                        }
+                    });
+                    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            return false;
+                        }
+                    });
+                    return adapterBinding.getRoot();
                 }
-
-                Log.e("HJLEE", ">>>" + adapterBinding.getDomain().getTitle().length());
-                convertView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        BoardActivity.super.showToast(adapterBinding.getDomain().getNo());
-                        Intent intent = new Intent(getApplicationContext(), BoardDetailActivity.class);
-                        intent.putExtra("No", adapterBinding.getDomain().getNo());
-                        startActivity(intent);
-                        //finish();
-                    }
-                });
-                convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        return false;
-                    }
-                });
-                return adapterBinding.getRoot();
-            }
-        };
-        binding.seedListview.setAdapter(boardSeedAdapter);
+            };
+            binding.seedListview.setAdapter(boardSeedAdapter);
+        }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        if(id == R.id.draw_save_seed){
+        if (id == R.id.draw_save_seed) {
             Intent intent = new Intent(getApplicationContext(), SaveSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_farm_seed){
+        } else if (id == R.id.draw_farm_seed) {
             Intent intent = new Intent(getApplicationContext(), FarmSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_harvest_history){
+        } else if (id == R.id.draw_harvest_history) {
             Intent intent = new Intent(getApplicationContext(), MySeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.draw_bonus_seed){
+        } else if (id == R.id.draw_bonus_seed) {
             Intent intent = new Intent(getApplicationContext(), BonusSeedActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.logout){
+        } else if (id == R.id.logout) {
             mSharedPrefManager.removeAllPreferences();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
-            ((MainActivity)MainActivity.mContext).finish();
+            ((MainActivity) MainActivity.mContext).finish();
             finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

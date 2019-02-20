@@ -107,7 +107,7 @@
                                 android:layout_weight="6"
                                 android:background="@drawable/common_edit_text"
                                 android:hint="체인 이름 또는 주소를 입략해주세요."
-                                android:paddingLeft="4dp"
+                                android:paddingLeft="16dp"
                                 android:textSize="13dp" />
 
                             <Button
@@ -229,6 +229,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            android:background="#E9F3F5"
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/activity_sub_main_drawer" />
 

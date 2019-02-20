@@ -24,6 +24,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.shagi.materialdatepicker.date.DatePickerFragmentDialog;
 import com.whyble.farm.seed.MainActivity;
 import com.whyble.farm.seed.R;
 import com.whyble.farm.seed.common.SharedPrefManager;
@@ -418,7 +419,7 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
     }
 
     public void onClickBirthday(View view) {
-        final Calendar cldr = Calendar.getInstance();
+       /* final Calendar cldr = Calendar.getInstance();
         int day = cldr.get(Calendar.DAY_OF_MONTH);
         int month = cldr.get(Calendar.MONTH);
         int year = cldr.get(Calendar.YEAR);
@@ -431,7 +432,19 @@ public class UpdateActivity extends BaseActivity<UpdateActivity> implements Upda
                         binding.birthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                     }
                 }, year, month, day);
-        picker.show();
+        picker.show();*/
+
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        DatePickerFragmentDialog.newInstance(new DatePickerFragmentDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePickerFragmentDialog view, int year, int monthOfYear, int dayOfMonth) {
+                binding.getDomain().setBirthday(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                binding.birthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+            }
+        }, year, month, day).show(getSupportFragmentManager(), "DatePickerFragmentDialog");
     }
 
     @Override

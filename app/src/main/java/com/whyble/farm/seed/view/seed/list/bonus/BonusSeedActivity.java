@@ -93,12 +93,9 @@ public class BonusSeedActivity extends BaseActivity<BonusSeedActivity> implement
 
     @Override
     public void getSeedResult(String s) {
-        Log.e("HJLEE", "s : " + s);
         Gson gson = new Gson();
         BonusList response = gson.fromJson(s, BonusList.class);
-        Log.e("HJLEE", "response : " + response);
         if(response.getBouns_list() != null){
-            Log.e("HJLEE", "response.getBouns_list() : " + response.getBouns_list().size());
             setSaveSeedList(response.getBouns_list());
             setTotalSeed(response.getBouns());
         }

@@ -84,6 +84,8 @@
                     android:gravity="left"
                     android:paddingLeft="4dp"
                     android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:privateImeOptions="defaultInputmode=english"
                     android:singleLine="true"
                     android:background="@drawable/common_btn"/>
 
