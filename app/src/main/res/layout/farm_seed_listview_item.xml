@@ -75,7 +75,8 @@
                         android:textColor="@color/seed_color"
                         android:textStyle="bold"
                         android:layout_marginRight="8dp"
-                        android:text="@={domain.farm_point}" />
+                        android:text="@={domain.farm_point}"
+                        app:stringToMoneyType="@{domain.farm_point}"/>
 
                     <TextView
                         android:layout_width="wrap_content"

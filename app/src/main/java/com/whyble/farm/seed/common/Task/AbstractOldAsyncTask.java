@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
@@ -35,6 +36,7 @@ public abstract class AbstractOldAsyncTask extends AsyncTask<List<NameValuePair>
     protected String doInBackground(List<NameValuePair>... lists) {
         Https https = new Https();
         HttpClient client = https.getHttpClient();
+        //HttpClient client = new DefaultHttpClient();
         HttpParams param = client.getParams();
         HttpConnectionParams.setConnectionTimeout(param, 5000);
         HttpConnectionParams.setSoTimeout(param, 5000);

@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity<MainActivity> implements Navigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //navigationView.setItemIconTintList(null);
 
     }
 
